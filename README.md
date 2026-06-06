@@ -4,53 +4,75 @@
 
 ---
 
-## About the Website
+## Website Overview
 
-The B5TA website is the official community web platform for Clan B5TA, a RuneScape clan. Built with PHP, Bootstrap 3, and jQuery, the site serves as a central hub for clan members and the broader community.
+This repository contains the source files for the B5TA clan website, built with PHP, Bootstrap 3, and jQuery.
 
-### Features
+### Pages
 
-- **Navigation Bar** — A fixed, responsive navbar with links to Home, Discord, Guides, Flip Chart, Contact, and Login
-- **Guides** — A dropdown menu covering four categories of RuneScape content: Bossing, Money Making, Quests, and Skilling
-- **Flip Chart** — A dedicated section for item flipping and Grand Exchange market tracking
-- **Discord Integration** — A direct link to the clan's Discord server for real-time community interaction
-- **YouTube Integration** — Embedded video players for guides and clan content
-- **Scrollspy Navigation** — A sticky sidebar that tracks scroll position across five content sections, making long pages easy to navigate
-- **Responsive Design** — Mobile-friendly layout built on the Bootstrap 3 grid system
+- **`index.php`** — The main homepage. Displays the B5TA logo in a blue header banner, a fixed responsive navbar, a scrollspy sidebar, and five content sections.
+
+### Navigation
+
+The navbar includes the following links:
+
+- **Home** — Links to `home.php`
+- **Discord** — Community link with Discord icon
+- **Guides** — Dropdown menu with four categories: Bossing, Money Making, Quests, and Skilling
+- **Flip Chart** — Section for Grand Exchange item flipping
+- **Contact** — Contact link
+- **Log In** — User login
+
+### JavaScript (`js/`)
+
+| File | Purpose |
+|---|---|
+| `jquery.js` / `jquery.min.js` | jQuery library |
+| `bootstrap.js` / `bootstrap.min.js` | Bootstrap interactive components |
+| `dropdown.js` | Hover-activated dropdown behavior |
+| `externalscript.js` | Tab switching (Tutorials, Reviews, Impressions) and scroll-to-top |
+| `destroyvid.js` | Stops and resets up to 14 embedded YouTube players when modals are closed |
+| `npm.js` | npm package bootstrap entry point |
+
+### CSS (`css/`)
+
+| File | Purpose |
+|---|---|
+| `bootstrap.css` / `bootstrap.min.css` | Bootstrap core styles |
+| `bootstrap-theme.css` / `bootstrap-theme.min.css` | Bootstrap default theme |
+| `dropdownhover.css` | Hover effect styles for dropdown menus |
+| `dropdownmenu.css` | Dropdown menu layout styles |
+| `externalstyle.css` | Custom site styles — navbar opacity, tab panels, responsive breakpoints |
+
+### Assets
+
+- **`images/b5talogo.png`** — The B5TA clan logo displayed in the site header
+- **`images/discord.jpg`** — Discord icon used in the navbar
+- **`fonts/`** — Glyphicons web fonts (`.eot`, `.woff`, `.woff2`, `.ttf`, `.svg`) used by Bootstrap icons
 
 ### Tech Stack
 
 | Layer | Technology |
 |---|---|
 | Backend | PHP |
-| Frontend | HTML, CSS3, JavaScript (jQuery) |
+| Frontend | HTML, CSS3, JavaScript |
 | Framework | Bootstrap 3 |
-| Libraries | jQuery, Bootstrap JS plugins |
+| Library | jQuery |
 
 ---
 
 ## About Clan B5TA
 
-Clan B5TA is a RuneScape community founded on **September 30, 2014** by *zoop*. What started as a casual gathering has grown into a serious and active community centered around three core pillars of RuneScape gameplay:
+Clan B5TA is a RuneScape community founded on **September 30, 2014**. What began as a casual group has grown into an active and organized clan built around three core areas of gameplay: **skilling**, **bossing**, and **Grand Exchange flipping**.
 
-- **Skilling** — Members work together to level up skills, cap in the Clan Citadel weekly, and support each other's in-game progression
-- **Bossing** — The clan organizes group boss fights, helping members tackle RuneScape's hardest PvM content
-- **Flipping** — B5TA has a strong Grand Exchange flipping culture, with the Flip Chart feature on this website supporting members in tracking profitable trades
+The clan is known for its laid-back, drama-free atmosphere. Members are expected to be respectful to one another and abide by RuneScape's Terms of Service. Actions such as botting, luring, scamming, and harassment are strictly against clan rules.
 
-### Community Values
+B5TA is also a **Twitch streaming community**, maintaining a network of member streamers who support each other. Discord bots within the clan server automatically announce when members go live, helping grow each streamer's audience.
 
-B5TA prides itself on being a **drama-free, laid-back clan** where players can enjoy RuneScape without toxicity. The community is built on mutual respect and a shared love of the game. Members are expected to treat each other well and follow RuneScape's Terms of Service — botting, luring, scamming, and harassment are strictly prohibited.
+Active participation is a core part of membership — capping in the Clan Citadel weekly and helping recruit new members are both recognized paths to promotion within the clan's ranking system.
 
-### Streaming Community
-
-Beyond gameplay, B5TA is also a **Twitch streaming community**. The clan maintains a network of streamers who actively support one another, with Discord bots that announce when members go live, helping the community grow their audiences together.
-
-### Membership
-
-Members are encouraged to be active participants — capping in the Clan Citadel weekly and helping recruit qualified players are both paths to promotion within the clan's ranking system. Long-term inactivity for lower-level members may result in removal to keep the community active and engaged.
-
-For more information, visit the official clan website at [b5ta.com](https://www.b5ta.com) or join the community on [Discord](https://b5ta.com/discord/).
+For more information, visit [b5ta.com](https://www.b5ta.com) or join the community on [Discord](https://b5ta.com/discord/).
 
 ---
 
-*Licensed under the [MIT License](LICENSE). Originally created in 2017.*
+*Licensed under the [MIT License](LICENSE).*
