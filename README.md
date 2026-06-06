@@ -1,6 +1,6 @@
 # b5ta-website
 
-**Live Site:** [azqato.github.io/b5ta-website](https://azqato.github.io/b5ta-website)
+**Live Site:** [azqato.github.io/B5TA/](https://azqato.github.io/B5TA/)
 
 ---
 
