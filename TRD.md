@@ -2,13 +2,13 @@
 
 **Version:** 1.0
 **Date:** 2026-06-07
-**Status:** Planning — execution pending
+**Status:** Complete
 
 ---
 
 ## 1. Overview
 
-This document defines the technical implementation plan for migrating the B5TA website from the Bootstrap shell (`index.php`) to the ipage-based design. The ipage structure and content take priority. Bootstrap 3 + jQuery remain the frontend framework.
+This document defines the technical implementation of the B5TA website. The site has been migrated from a Bootstrap shell (`index.php`) to a static HTML implementation based on the ipage design. All pages are served via GitHub Pages — no PHP server required.
 
 ---
 
@@ -17,34 +17,30 @@ This document defines the technical implementation plan for migrating the B5TA w
 | Layer | Technology | Notes |
 |---|---|---|
 | Markup | HTML5 | Semantic structure per ipage conventions |
-| Styling | CSS3 | Bootstrap 3 base + `css/site.css` (ipage layout extraction) |
-| Interactivity | JavaScript / jQuery | Mobile nav toggle, dropdown hover |
+| Styling | CSS3 | Bootstrap 3 base + `css/site.css` (ipage layout) |
+| Interactivity | JavaScript / jQuery | Mobile nav toggle, sub-menu, scroll-to-top |
 | Framework | Bootstrap 3 | Grid, components, responsive breakpoints |
-| Backend | PHP | `include` for shared header/footer; no database required |
-| Deployment options | PHP server (b5ta.com) or static HTML (GitHub Pages) | See §8 |
+| Backend | None | Static HTML — no server-side processing |
+| Hosting | GitHub Pages | Served from `master` branch root |
 
 ---
 
-## 3. File Structure (Target)
+## 3. File Structure
 
 ```
 B5TA/
 │
-├── index.php                    ← Homepage
-├── about.php                    ← About page
-├── discord.php                  ← Discord page
-├── guides.php                   ← Guides index
-├── guides-bossing.php           ← Bossing stub
-├── guides-money-making.php      ← Money Making stub
-├── guides-quests.php            ← Quests stub
-├── guides-skilling.php          ← Skilling stub
-│
-├── includes/
-│   ├── header.php               ← Shared: <html> through end of left sidebar nav
-│   └── footer.php               ← Shared: right aside + footer + </body></html>
+├── index.html                   ← Homepage
+├── about.html                   ← About page
+├── discord.html                 ← Discord page
+├── guides.html                  ← Guides index
+├── guides-bossing.html          ← Bossing stub
+├── guides-money-making.html     ← Money Making stub
+├── guides-quests.html           ← Quests stub
+├── guides-skilling.html         ← Skilling stub
 │
 ├── css/
-│   ├── site.css                 ← NEW: ipage layout CSS (extracted from 73795.css)
+│   ├── site.css                 ← ipage layout CSS (custom, replaces WordPress 73795.css)
 │   ├── bootstrap.css
 │   ├── bootstrap.min.css
 │   ├── bootstrap-theme.css
@@ -54,166 +50,164 @@ B5TA/
 │   └── externalstyle.css
 │
 ├── js/
+│   ├── site.js                  ← mobile nav/aside toggle (custom)
 │   ├── jquery.min.js
 │   ├── bootstrap.js
 │   ├── bootstrap.min.js
 │   ├── dropdown.js
 │   ├── externalscript.js
-│   ├── destroyvid.js
-│   └── site.js                  ← NEW: mobile nav toggle for ipage sidebar
+│   └── destroyvid.js
 │
-├── images/
-│   ├── discord.jpg
-│   └── [others]
+├── Logos/                       ← Logo images (0jK9PZV.png, clan.png, favicon, etc.)
+├── images/                      ← Legacy images
+├── Design/                      ← Design assets (sprites, header/footer/sidebar images)
+├── Gameplay/                    ← Gameplay media assets
+├── fonts/                       ← Bootstrap Glyphicons
 │
-├── Logos/                        ← Logo variants (0jK9PZV.png, clan.png, favicon, etc.)
-├── Design/                       ← Design assets
-├── Gameplay/                     ← Gameplay media
-├── fonts/                        ← Glyphicons
+├── ipage/                       ← Original site archive (reference only)
+│   ├── homepage.html
+│   ├── about.html
+│   ├── discord.html
+│   ├── guides.html
+│   ├── homepage_files/
+│   ├── about_files/
+│   ├── discord_files/
+│   └── guides_files/
 │
-└── ipage/                        ← Archive — reference only, not served
+├── .nojekyll                    ← Disables GitHub Pages Jekyll processing
+├── ReadMe.md
+├── PRD.md
+├── Design.md
+├── TRD.md
+└── PatchNotes.md
 ```
 
 ---
 
-## 4. PHP Include Architecture
+## 4. Static HTML Architecture
 
-All pages follow this pattern:
+All pages are complete, self-contained HTML files. Header and footer markup is inlined directly — there is no server-side templating.
 
-```php
-<?php
-$pageTitle  = 'B5TA | Page Name';
-$activePage = 'page-key';           // matches nav item key
-include 'includes/header.php';
-?>
+### Page Structure
 
-<!-- page-specific content here -->
+Every page follows this pattern:
 
-<?php include 'includes/footer.php'; ?>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>B5TA | [Page Name]</title>
+  <!-- meta, CSS, JS -->
+</head>
+<body>
+
+  <!-- Fixed header with logo -->
+  <header class="headerMain">...</header>
+
+  <!-- Mobile hamburger buttons -->
+  <div class="navMenuButton" id="navMenuButton">...</div>
+  <div class="asideMenuButton" id="asideMenuButton">...</div>
+
+  <!-- Left sidebar navigation (active item hardcoded per page) -->
+  <div class="primary-menu" id="primaryMenu">...</div>
+
+  <!-- Mobile overlay -->
+  <div class="site-overlay" id="siteOverlay"></div>
+
+  <!-- Main content wrapper -->
+  <div class="container-fluid">
+    <div class="meta clearfix"><!-- search bar --></div>
+
+    <!-- Page content -->
+    <div class="pageContainer">
+      <article class="entry entryTypePost">
+        <header class="entryHeader"><h1 class="entryTitle">...</h1></header>
+        <div class="entryContent">...</div>
+      </article>
+    </div>
+
+    <!-- Footer inside container -->
+    <footer class="site-footer">...</footer>
+  </div>
+
+  <!-- Right aside (active item hardcoded per page) -->
+  <aside class="site-aside" id="siteAside">...</aside>
+
+  <!-- Scroll-to-top button -->
+  <a href="#" id="scrollTop">↑</a>
+
+  <script src="js/site.js"></script>
+  <script src="js/externalscript.js"></script>
+</body>
+</html>
 ```
 
-### `includes/header.php` covers:
-- `<!DOCTYPE html>` through `<body>`
-- `<head>`: title, meta, CSS links, JS links
-- `<header class="headerMain">` — logo + tagline
-- `.meta.clearfix` — search bar
-- `.navMenuButton` — mobile hamburger
-- `.primary-menu.primary-menu-side` — left sidebar nav
-  - Active item set via `$activePage` PHP variable
-- Opening `<div class="container-fluid"><div class="row">`
+### Active State (nav and aside)
 
-### `includes/footer.php` covers:
-- `.asideMenuButton` — mobile aside hamburger
-- `<aside>` — right sidebar with Pages widget
-- Closing `</div></div>` (container/row)
-- `<footer>` — copyright line
-- JS that must load at bottom (`site.js`, `externalscript.js`)
-- `</body></html>`
+Per-page active items are hardcoded with `current-menu-item current_page_item` (nav) and `current_page_item` (aside). No server-side variable needed.
 
-### PHP Variables
-
-| Variable | Type | Purpose |
+| Page | Nav active | Aside active |
 |---|---|---|
-| `$pageTitle` | string | `<title>` tag content |
-| `$activePage` | string | Sets `current-menu-item` class on matching nav `<li>` |
+| `index.html` | Home | Home |
+| `about.html` | About | About |
+| `discord.html` | Discord | Discord |
+| `guides.html` + all guide sub-pages | Guides | Guides |
 
 ---
 
-## 5. CSS Plan
+## 5. CSS Architecture
 
-### 5.1 New file: `css/site.css`
-
-Extract the following from `ipage/homepage_files/73795.css` and `ipage/homepage_files/styles.css`:
-
-**Sections to extract:**
-
-```
-/* Header */
-.headerMain, .header-content, #logo, .logo-img, .blog-description
-
-/* Sidebar nav */
-.primary-menu, .primary-menu-side, .primary-menu-container,
-.nav-container, .main-menu, .main-menu li, .main-menu a,
-.menu-item, .current-menu-item, .current_page_item
-
-/* Mobile nav toggle */
-.navMenuButton, .navMenuButtonTitle, .navMenuButtonContent,
-.asideMenuButton, .asideMenuButtonTitle, .asideMenuButtonContent
-
-/* Page container / article */
-.pageContainer, .entry, .entryTypePost, .entryHeader,
-.entryTitle, .entryContent, .entryMeta
-
-/* Aside */
-.aside-container, .customSidebar, .dynamicSidebar,
-.sidebarContent, .widget, .widgetTitle
-
-/* Footer */
-footer.container-fluid, .content.clearfix, .copyright
-
-/* Meta / search */
-.meta.clearfix, .meta-search-form, .search-form,
-.search-field, .search-submit
-```
-
-**Rules to override / remove from Bootstrap shell (`externalstyle.css` or inline):**
-- `.head-format` (blue header — replaced by `.headerMain`)
-- `.logo` (height: 100% — replaced by `.logo-img`)
-- `.affix` + `.affix + .container-fluid` (scrollspy affix — removed)
-- `#section1` through `#section5` (colored section backgrounds — removed)
-- `ul.nav-pills` margin (scrollspy sidebar — removed)
-- `.container-fluid` zero-padding (keep if still needed, review)
-
-### 5.2 Load order in `<head>`
+### Load Order
 
 ```html
 <link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/dropdownhover.css">
-<link rel="stylesheet" href="css/site.css">        ← ipage layout, loads after Bootstrap
+<link rel="stylesheet" href="css/site.css">   <!-- loads after Bootstrap, overrides where needed -->
 ```
+
+### `css/site.css` — Key Sections
+
+| Section | Key Selectors |
+|---|---|
+| Header | `.headerMain`, `.header-content`, `#logo`, `.logo-img`, `.blog-description` |
+| Meta bar | `.meta`, `.meta-search-form` |
+| Left nav hamburger | `.navMenuButton` |
+| Right aside hamburger | `.asideMenuButton` |
+| Left sidebar | `.primary-menu`, `.primary-menu-container`, `.main-menu`, `.nav-container` |
+| Active nav state | `.current-menu-item`, `.current_page_item` |
+| Sub-menu | `.sub-menu`, `.menu-item-has-children`, `.sub-open` |
+| Page content | `.pageContainer`, `.entry`, `.entryHeader`, `.entryTitle`, `.entryContent` |
+| Right aside | `aside.site-aside`, `.aside-container`, `.dynamicSidebar`, `.widget`, `.widgetTitle` |
+| Footer | `footer.site-footer`, `.copyright` |
+| Overlay | `.site-overlay`, `.is-visible` |
+| Desktop 3-column | `@media (min-width: 1200px)` — removes transitions, shows both sidebars |
 
 ---
 
-## 6. JavaScript Plan
+## 6. JavaScript Architecture
 
-### 6.1 Existing scripts to keep
+### `js/site.js`
 
-| Script | Keep | Reason |
-|---|---|---|
-| `jquery.min.js` | Yes | Required by Bootstrap + custom scripts |
-| `bootstrap.js` | Yes | Collapse, dropdown, affix components |
-| `dropdown.js` | Yes | Hover dropdown behavior on Guides nav item |
-| `externalscript.js` | Yes | Scroll-to-top; keep for future tab use |
-| `destroyvid.js` | Yes | Future YouTube embeds |
-| `jquery.js` (non-min) | Remove | Duplicate of `jquery.min.js` |
-| `npm.js` | Remove | Not needed outside a build pipeline |
+jQuery-based. Loaded before `</body>`.
 
-### 6.2 New file: `js/site.js`
+| Feature | Implementation |
+|---|---|
+| Left nav toggle | `#navMenuButton` click → `.primary-menu.is-open`, overlay |
+| Right aside toggle | `#asideMenuButton` click → `aside.site-aside.is-open`, overlay |
+| Sub-menu | `.menu-item-has-children > a` click → `.sub-open` (mobile only) |
+| Overlay close | `#siteOverlay` click → removes all `.is-open` / `.is-visible` |
+| Outside-click close | `$(document)` click → closes any open panel |
+| Scroll-to-top | `$(window).scroll` → shows/hides `#scrollTop`; click → animate to top |
 
-Mobile sidebar toggle for the ipage `.navMenuButton` / `.asideMenuButton` pattern.
+### JS Load Order
 
-```javascript
-$(document).ready(function() {
-  $('.navMenuButton').on('click', function() {
-    $('.primary-menu').toggleClass('open');
-  });
-  $('.asideMenuButton').on('click', function() {
-    $('aside').toggleClass('open');
-  });
-});
-```
-
-### 6.3 Load order
-
-JS in `<head>` (required for Bootstrap affix/collapse to initialize before scroll):
+In `<head>` (Bootstrap requires jQuery before DOM ready):
 
 ```html
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="js/dropdown.js"></script>
 ```
 
-JS before `</body>` (non-blocking):
+Before `</body>`:
 
 ```html
 <script src="js/site.js"></script>
@@ -222,114 +216,60 @@ JS before `</body>` (non-blocking):
 
 ---
 
-## 7. Page-by-Page Implementation
+## 7. GitHub Pages Deployment
 
-### 7.1 `index.php` (Homepage)
+### Setup
 
-**Content source:** `ipage/homepage.html` — `<div class="entryContent">` block
+1. Push to `master` branch at `github.com/Azqato/B5TA`
+2. In GitHub repo Settings → Pages → set Source to `master` branch, `/ (root)`
+3. Site serves at `azqato.github.io/B5TA/`
 
-**Steps:**
-1. Set `$pageTitle = 'B5TA | Home'`, `$activePage = 'home'`
-2. Include `includes/header.php`
-3. Render `<article class="entry entryTypePost">` with:
-   - `<h1 class="entryTitle">` (blank — homepage has no visible title in ipage)
-   - `<div class="entryContent">` containing the homepage content
-4. Image: `<img src="Logos/clan.png">` float right
-5. Discord link → `discord.php`
-6. Include `includes/footer.php`
+### `.nojekyll`
 
-**Remove from current `index.php`:**
-- Scrollspy `data-spy` attributes
-- Section IDs (`#welcome`, `#runescape`, etc.)
-- Colored `<div>` section backgrounds
-- Left scrollspy nav panel
+An empty `.nojekyll` file at the repo root disables GitHub Pages' Jekyll processing. Without it, Jekyll may ignore files and directories starting with `_` and could interfere with Bootstrap's `fonts/` directory.
+
+### Relative Paths
+
+All asset references use relative paths (e.g., `css/site.css`, `Logos/0jK9PZV.png`) so the site works both locally and when served from `azqato.github.io/B5TA/`.
 
 ---
 
-### 7.2 `about.php`
+## 8. Migration Execution Summary
 
-**Content source:** `ipage/about.html` — `<div class="entryContent">` block
+All steps from the original plan are complete:
 
-**Steps:**
-1. `$pageTitle = 'B5TA | About'`, `$activePage = 'about'`
-2. Include header
-3. Article with title "About" + `<ul>` content from ipage
-4. Include footer
-
----
-
-### 7.3 `discord.php`
-
-**Content source:** `ipage/discord.html` — `<div class="entryContent">` block
-
-**Steps:**
-1. `$pageTitle = 'B5TA | Discord'`, `$activePage = 'discord'`
-2. Include header
-3. Article with `<ol>` steps + `wfbCHon.gif`
-4. **Update Discord invite URL** — current link is expired
-5. Include footer
-
----
-
-### 7.4 `guides.php`
-
-**Content source:** `ipage/guides.html` — `<div class="entryContent">` block
-
-**Steps:**
-1. `$pageTitle = 'B5TA | Guides'`, `$activePage = 'guides'`
-2. Include header
-3. Article with title "Guides" + category links + community guide `<ul>`
-4. Include footer
-
----
-
-### 7.5 Guide stubs (`guides-*.php`)
-
-No content change needed. Just update `$activePage = 'guides'` and ensure include paths are correct.
-
----
-
-## 8. Deployment
-
-### Option A: PHP Server (b5ta.com)
-
-- Upload all `.php` files and assets
-- Requires PHP 7+ on the server
-- `.php` extension works as-is
-
-### Option B: GitHub Pages (static)
-
-- GitHub Pages does not execute PHP
-- Convert all `.php` files to `.html`
-- Replace `<?php include ... ?>` with copy-paste or a static site generator step
-- `index.html` works as default; other pages need explicit `.html` links
-
-**Recommended:** Build and test with PHP locally (XAMPP/MAMP/Laragon), then decide on deployment target. If GitHub Pages is the target, a build step to flatten PHP includes into static HTML is needed.
-
----
-
-## 9. Migration Execution Steps (Ordered)
-
-1. **Extract CSS** from `ipage/homepage_files/73795.css` → create `css/site.css`
-2. **Create `js/site.js`** with mobile nav toggle
-3. **Rewrite `includes/header.php`** using ipage layout (`.headerMain`, `.primary-menu-side`)
-4. **Rewrite `includes/footer.php`** with ipage aside + footer markup
-5. **Rewrite `index.php`** — ipage homepage content inside article layout
-6. **Rewrite `about.php`** — ipage about content
-7. **Rewrite `discord.php`** — ipage discord content (update invite URL)
-8. **Rewrite `guides.php`** — ipage guides content
-9. **Update guide stubs** — fix include paths, confirm active nav state
-10. **Test in browser** — verify layout, nav active states, mobile toggle, all links
-11. **Commit and push** — push to GitHub, verify GitHub Pages render (or deploy to PHP server)
-
----
-
-## 10. Risks and Mitigations
-
-| Risk | Mitigation |
+| Step | Status |
 |---|---|
-| `73795.css` is the full WikiWP theme (large, complex) | Extract only the selectors listed in §5.1; do not include the full file |
-| WordPress-specific CSS classes may conflict with Bootstrap | Prefix or scope ipage CSS classes if conflicts arise |
-| Discord invite URL is expired | Confirm current invite before launch |
-| GitHub Pages won't run PHP | Test static output; convert to `.html` if needed |
-| Mobile nav toggle not working | Test `.navMenuButton` jQuery toggle; fallback to Bootstrap collapse if needed |
+| Extract CSS from `73795.css` → `css/site.css` | ✅ Done |
+| Create `js/site.js` — mobile nav toggle | ✅ Done |
+| Build ipage 3-column layout | ✅ Done |
+| Write all page HTML files (index, about, discord, guides, 4 stubs) | ✅ Done |
+| Inline header/footer into every page | ✅ Done |
+| Convert `.php` → `.html` | ✅ Done |
+| Remove PHP files and `includes/` directory | ✅ Done |
+| Add `.nojekyll` for GitHub Pages | ✅ Done |
+| Update all documentation | ✅ Done |
+| Commit and push to GitHub | ✅ Done |
+
+---
+
+## 9. Known Issues / Future Work
+
+| Item | Priority | Notes |
+|---|---|---|
+| Discord invite URL may be expired | High | Update `discord.html` step 2 link once confirmed |
+| Guide sub-pages are stubs | Medium | Fill in content as clan members contribute |
+| Flip Chart page not created | Low | Nav link exists, page TBD |
+| Search bar is decorative | Low | Static site can't process search queries |
+| Duplicate maintenance across HTML files | Low | Any nav change requires updating all 8 files |
+
+---
+
+## 10. Risks and Notes
+
+| Risk | Status |
+|---|---|
+| WordPress-specific CSS conflict | Resolved — `css/site.css` replaces `73795.css` entirely |
+| Discord invite URL expired | Open — placeholder kept; needs update |
+| Mobile nav toggle not working | Resolved — jQuery `.is-open` approach tested and implemented |
+| GitHub Pages won't run PHP | Resolved — converted to static HTML |

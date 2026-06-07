@@ -8,7 +8,7 @@
 
 ## 1. Design Philosophy
 
-The ipage design takes priority. It is a clean, content-first layout inspired by the Wikipedia/WikiWP aesthetic: white background, readable text, sidebar navigation, no heavy visuals competing with content. The rebuild preserves this look using Bootstrap 3 as the underlying grid instead of WordPress.
+The ipage design takes priority. It is a clean, content-first layout inspired by the Wikipedia/WikiWP aesthetic: white background, readable text, sidebar navigation, no heavy visuals competing with content. The rebuild reproduces this look using Bootstrap 3 as the underlying framework with a custom `css/site.css` replacing the WordPress-dependent `73795.css`.
 
 ---
 
@@ -18,36 +18,38 @@ The ipage design takes priority. It is a clean, content-first layout inspired by
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  HEADER (.headerMain)                                │
+│  HEADER (.headerMain)  — fixed 100px                 │
 │  [logo image]  Founded September 30th, 2014          │
 ├─────────────────────────────────────────────────────┤
 │  META BAR (.meta.clearfix)                           │
 │  [Search form]                                       │
-├────────────┬────────────────────────┬────────────────┤
-│ LEFT NAV   │  PAGE CONTENT          │  RIGHT ASIDE   │
-│ (.primary- │  (.pageContainer)      │  (.aside-      │
-│  menu-side)│                        │   container)   │
-│            │  <article>             │                │
-│  About     │    <h1 class=          │  Subscribe     │
-│  Discord   │      "entryTitle">     │  widget        │
-│  Guides    │    <div class=         │                │
-│  ...       │      "entryContent">   │  Pages list    │
-│            │    </article>          │                │
-├────────────┴────────────────────────┴────────────────┤
-│  FOOTER                                              │
+├──────────────┬──────────────────────┬────────────────┤
+│ LEFT NAV     │  PAGE CONTENT        │  RIGHT ASIDE   │
+│ 215px fixed  │  (.pageContainer)    │  300px fixed   │
+│              │                      │                │
+│ .primary-    │  <article>           │  Pages widget  │
+│  menu        │    .entryHeader      │                │
+│              │    .entryContent     │  External      │
+│ Home         │  </article>          │  Links widget  │
+│ About        │                      │                │
+│ Discord      │                      │                │
+│ Guides ▸     │                      │                │
+│ Flip Chart   │                      │                │
+├──────────────┴──────────────────────┴────────────────┤
+│  FOOTER (.site-footer)                               │
 │  © Clan B5TA | Founded September 30th, 2014          │
 └─────────────────────────────────────────────────────┘
 ```
 
-### 2.2 Column Widths (Bootstrap 3 grid)
+### 2.2 Column Widths
 
-| Column | Class | Approx width |
+| Column | Width | Behavior |
 |---|---|---|
-| Left sidebar nav | `col-sm-2` | ~16% |
-| Main content | `col-sm-7` or `col-sm-8` | ~58–66% |
-| Right aside | `col-sm-2` or `col-sm-3` | ~16–25% |
+| Left sidebar nav | 215px fixed | Always visible at 1200px+; off-canvas below |
+| Main content | fluid (minus 215px left + 300px right) | Fills remaining space |
+| Right aside | 300px fixed | Always visible at 1200px+; off-canvas below |
 
-On mobile (`< 768px`): all columns stack vertically. Left nav collapses behind a hamburger toggle.
+Mobile (`< 1200px`): both sidebars slide in from their respective edges via `.is-open` toggle. A `.site-overlay` dims the page behind an open sidebar.
 
 ---
 
@@ -59,7 +61,7 @@ On mobile (`< 768px`): all columns stack vertically. Left nav collapses behind a
 <header class="headerMain">
   <div class="header-content">
     <div id="logo">
-      <a href="index.php" id="site-logo" title="Clan B5TA" rel="home">
+      <a href="index.html" id="site-logo" title="Clan B5TA" rel="home">
         <img class="logo-img" src="Logos/0jK9PZV.png" alt="Clan B5TA">
       </a>
       <span class="blog-description">Founded September 30th, 2014</span>
@@ -72,16 +74,12 @@ On mobile (`< 768px`): all columns stack vertically. Left nav collapses behind a
 
 | Property | Value |
 |---|---|
-| Background | `#ffffff` (white) |
-| Logo image | `Logos/0jK9PZV.png` — wide horizontal banner |
-| Tagline font | Inherits body font, smaller size, below logo |
-| Height | Determined by logo image natural height |
-
-**Logo files available:**
-- `Logos/0jK9PZV.png` — primary wide banner (used in ipage header)
-- `Logos/NTjJFV8.png` — alternate wide banner
-- `Logos/0jK9PZV-1024x461.png` — 1024px wide version
-- `images/b5talogo.png` — current Bootstrap shell logo (to be replaced)
+| Position | `fixed`, `z-index: 1000` |
+| Height | `100px` |
+| Background | `#ffffff` |
+| Border | `1px solid #e5e5e5` (bottom) |
+| Logo image | `Logos/0jK9PZV.png` — wide horizontal banner, `max-height: 60px` |
+| Tagline | `font-size: 0.78em`, `color: #aaa`, centered below logo |
 
 ---
 
@@ -90,31 +88,28 @@ On mobile (`< 768px`): all columns stack vertically. Left nav collapses behind a
 ### 4.1 Markup
 
 ```html
-<div class="primary-menu primary-menu-side">
+<div class="primary-menu" id="primaryMenu">
   <div class="primary-menu-container">
-    <div class="navMenuButton">
-      <header class="navMenuButtonTitle">Menu</header>
-      <div class="navMenuButtonContent">
-        <hr><hr><hr>
-      </div>
-    </div>
     <nav class="nav-container">
       <ul class="main-menu">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="discord.php">Discord</a></li>
-        <li class="dropdown"><a href="guides.php">Guides</a>
-          <ul class="dropdown-menu">
-            <li><a href="guides-bossing.php">Bossing</a></li>
-            <li><a href="guides-money-making.php">Money Making</a></li>
-            <li><a href="guides-quests.php">Quests</a></li>
-            <li><a href="guides-skilling.php">Skilling</a></li>
+        <li class="menu-item current-menu-item current_page_item">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="menu-item">
+          <a href="about.html">About</a>
+        </li>
+        <li class="menu-item menu-item-has-children">
+          <a href="guides.html">Guides</a>
+          <ul class="sub-menu">
+            <li class="menu-item"><a href="guides-bossing.html">Bossing</a></li>
+            ...
           </ul>
         </li>
-        <li><a href="flip-chart.php">Flip Chart</a></li>
-        <li><a href="[RS clan URL]" target="_blank">Official Clan Page</a></li>
-        <li><a href="http://www.runeclan.com/clan/B5TA" target="_blank">Runeclan</a></li>
-        <li><a href="[Patreon URL]" target="_blank">Donate</a></li>
+        ...
+        <div class="menu-section-divider"></div>
+        <li class="menu-item">
+          <a href="[RS clan URL]" target="_blank" rel="noopener">Official Clan Page</a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -123,13 +118,21 @@ On mobile (`< 768px`): all columns stack vertically. Left nav collapses behind a
 
 ### 4.2 Active State
 
-The current page's nav item gets the `current-menu-item` and `current_page_item` classes (matching ipage convention).
+The current page's nav item carries `current-menu-item current_page_item` classes (hardcoded per page in static HTML, previously set via `$activePage` PHP variable).
 
-### 4.3 Mobile Behavior
+### 4.3 Desktop (1200px+)
 
-- The `.navMenuButton` div (3 `<hr>` bars) is the mobile toggle
-- On mobile, the sidebar collapses; clicking the button reveals it
-- Bootstrap `collapse` or a small jQuery toggle handles this
+- Background: `transparent` (white page shows through)
+- Nav links: `color: #2487d7`
+- Active link: `background: #e8e8e8; border-left: 4px solid #d0d0d0`
+- Hamburger button: hidden
+
+### 4.4 Mobile/Tablet (< 1200px)
+
+- Background: `#333` (dark panel)
+- Slides in from `left: -265px` to `left: 0` on `.is-open`
+- Nav links: `color: #ddd`
+- Hamburger button: fixed top-left, 3 `<span>` bars
 
 ---
 
@@ -146,23 +149,22 @@ The current page's nav item gets the `current-menu-item` and `current_page_item`
     <div class="entryContent">
       <!-- page content -->
     </div>
-    <footer class="entryMeta"></footer>
   </article>
 </div>
 ```
+
+The homepage omits `<header class="entryHeader">` — content begins directly in `.entryContent` with an `<h2>` welcome heading.
 
 ### 5.2 Content Styles
 
 | Element | Style |
 |---|---|
-| Background | `#ffffff` |
-| Text color | `#000000` |
-| `h1.entryTitle` | Large, bold page title |
-| `h2`, `h3` in content | Section headings within article |
-| `ul`, `ol` | Standard list formatting |
-| `strong` | Bold text (used extensively in ipage content) |
-| Images | `float: right` with margin, responsive max-width |
-| `.entryContent` max-width | `974px` (from ipage CSS) |
+| `.pageContainer` | `border: 1px solid #e5e5e5; background: #fff; min-height: 400px` |
+| `.entryTitle` | `font-size: 1.8em; border-bottom: 1px solid #e5e5e5` |
+| `.entryContent` | `padding: 20px 30px 30px; max-width: 974px` |
+| `h2` in content | `border-bottom: 1px solid #e5e5e5` |
+| Links | `color: #2487d7` |
+| `.alignright` / `.pull-right` | `float: right; margin: 0 0 15px 20px` |
 
 ---
 
@@ -171,45 +173,55 @@ The current page's nav item gets the `current-menu-item` and `current_page_item`
 ### 6.1 Markup
 
 ```html
-<aside>
-  <div class="aside-container container-full">
+<aside class="site-aside" id="siteAside">
+  <div class="aside-container">
     <div class="dynamicSidebar">
       <div class="widget">
         <h4 class="widgetTitle">Pages</h4>
         <ul>
-          <li><a href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="discord.php">Discord</a></li>
-          <li><a href="guides.php">Guides</a></li>
-          <!-- additional pages as added -->
+          <li class="page_item current_page_item"><a href="index.html">Home</a></li>
+          <li class="page_item"><a href="about.html">About</a></li>
+          ...
         </ul>
+      </div>
+      <div class="widget">
+        <h4 class="widgetTitle">External Links</h4>
+        <ul>...</ul>
       </div>
     </div>
   </div>
 </aside>
 ```
 
-**Note:** The Subscribe widget from ipage (Jetpack) is removed. The Pages widget is kept as a secondary nav aid.
+Active page marked with `current_page_item` class (hardcoded per page in static HTML).
 
-### 6.2 Mobile
+**Note:** The Subscribe widget from ipage (Jetpack) was removed. Pages and External Links widgets are kept.
 
-The aside has its own mobile toggle (`.asideMenuButton`) matching the left nav pattern — "Sidebar" label, 3 `<hr>` bars.
+### 6.2 Desktop (1200px+)
+
+- Always visible at `right: 0`
+- `border-left: 1px solid #e5e5e5`
+- Widget titles: uppercase, `color: #666`
+
+### 6.3 Mobile/Tablet (< 1200px)
+
+- Slides in from `right: -320px` to `right: 0` on `.is-open`
+- Hamburger button: fixed top-right, 3 dot `<span>` elements
 
 ---
 
 ## 7. Footer
 
 ```html
-<footer class="container-fluid">
+<footer class="site-footer">
   <div class="content clearfix">
-    <div class="col-md-12 copyright">
-      <p>
-        <strong>&copy; <a href="index.php">Clan B5TA</a></strong>
-        &nbsp;|&nbsp; Founded September 30th, 2014
-        &nbsp;|&nbsp; <a href="discord.php">Discord</a>
-        &nbsp;|&nbsp; <a href="about.php">About</a>
-      </p>
-    </div>
+    <p class="copyright">
+      <strong>&copy; <a href="index.html">Clan B5TA</a></strong>
+      &nbsp;|&nbsp; Founded September 30th, 2014
+      &nbsp;|&nbsp; <a href="discord.html">Discord</a>
+      &nbsp;|&nbsp; <a href="about.html">About</a>
+      &nbsp;|&nbsp; <a href="guides.html">Guides</a>
+    </p>
   </div>
 </footer>
 ```
@@ -218,93 +230,65 @@ The aside has its own mobile toggle (`.asideMenuButton`) matching the left nav p
 
 ## 8. Color Palette
 
-| Role | Color | Notes |
-|---|---|---|
-| Page background | `#ffffff` | White — matches ipage |
-| Body text | `#000000` | Black |
-| Links (default) | Bootstrap default blue | `#337ab7` |
-| Links (hover) | Bootstrap default | `#23527c` |
-| Header background | `#ffffff` | White — ipage design |
-| Footer background | `#f2f2f2` | Light grey |
-| Nav active item | To be styled | From `73795.css` |
-
-**Removed from Bootstrap shell:**
-- Blue header `#0066ff` → replaced with white ipage header
-- Section colors (`#1E88E5`, `#673AB7`, etc.) → removed (no colored sections in ipage design)
+| Role | Color |
+|---|---|
+| Page background | `#ffffff` |
+| Body text | `#333333` |
+| Links | `#2487d7` |
+| Link hover | `#1a5fa0` |
+| Header background | `#ffffff` |
+| Borders / dividers | `#e5e5e5` |
+| Left nav background (mobile) | `#333333` |
+| Left nav active bg (desktop) | `#e8e8e8` |
+| Meta bar background | `#ffffff` |
+| Widget titles | `#666666` |
 
 ---
 
 ## 9. Typography
 
-Inherits from Bootstrap 3 defaults plus WikiWP overrides:
-
-| Element | Font |
+| Element | Style |
 |---|---|
-| Body | Bootstrap default (Helvetica Neue / Arial) |
-| Headings | Bootstrap default |
-| Logo tagline | Smaller than logo, same family |
+| Body | `"Helvetica Neue", Helvetica, Arial, sans-serif` |
+| Headings | Bootstrap 3 defaults |
+| Widget titles | `0.95em`, uppercase, `letter-spacing: 0.03em` |
+| Blog description | `0.78em`, `color: #aaa` |
+| Entry content text | Bootstrap body default |
 
-No custom web fonts beyond Bootstrap's Glyphicons (already in `fonts/`).
+No custom web fonts beyond Bootstrap's Glyphicons (in `fonts/`).
 
 ---
 
-## 10. Assets Reference
+## 10. Responsive Breakpoints
+
+| Breakpoint | Behavior |
+|---|---|
+| `>= 1200px` | 3-column layout: 215px left nav + fluid content + 300px right aside. Hamburgers hidden. |
+| `768px – 1199px` | Tablet: content fills full width. Both sidebars off-canvas, hamburgers visible. |
+| `< 768px` | Mobile: content fills full width. Both sidebars off-canvas, hamburgers visible. |
+
+---
+
+## 11. Assets Reference
 
 ### Logo Images
 
-| File | Dimensions (approx) | Use |
-|---|---|---|
-| `Logos/0jK9PZV.png` | Wide banner | Header logo — primary |
-| `Logos/NTjJFV8.png` | Wide banner | Alternate header logo |
-| `Logos/clan.png` | 280×126 | Inline on homepage (float right) |
-| `Logos/favicon.png` | Square | Browser tab favicon |
-| `Logos/tnOKdrI.png` | Square | High-res favicon / Apple touch icon |
-| `Logos/B5TA wolf vector.png` | Vector | Clan wolf logo |
-| `images/b5talogo.png` | — | Bootstrap shell logo (to be replaced) |
+| File | Use |
+|---|---|
+| `Logos/0jK9PZV.png` | Header banner logo (primary) |
+| `Logos/clan.png` | Homepage float-right image (280×126) |
+| `Logos/favicon.png` | Browser tab favicon |
+| `Logos/tnOKdrI.png` | High-res favicon / Apple touch icon |
+| `Logos/NTjJFV8.png` | Alternate wide banner logo |
+| `Logos/B5TA wolf vector.png` | Clan wolf logo vector |
 
 ### Media Assets
 
 | File | Location | Use |
 |---|---|---|
 | `wfbCHon.gif` | `ipage/discord_files/` | Discord page animated banner |
-| `images/discord.jpg` | `images/` | Discord icon in nav (Bootstrap shell) |
-| `Design/spritesheet.png` | `Design/` | UI sprite sheet |
-| `Design/headerimg.jpg` | `Design/` | Header image variant |
-| `Design/footer.jpg` | `Design/` | Footer image |
-| `Design/sidebarimg.png` | `Design/` | Sidebar image |
-| `Gameplay/*.GIF` | `Gameplay/` | In-game clip assets |
-
----
-
-## 11. CSS Strategy
-
-### Phase 1 (ipage CSS extraction)
-Extract the layout-critical rules from `ipage/homepage_files/73795.css` into a new `css/site.css`:
-
-Key selectors to extract:
-- `.headerMain`, `#logo`, `.logo-img`, `.blog-description`
-- `.primary-menu`, `.primary-menu-side`, `.main-menu`
-- `.navMenuButton`, `.navMenuButtonTitle`, `.navMenuButtonContent`
-- `.pageContainer`, `.entry`, `.entryHeader`, `.entryTitle`, `.entryContent`
-- `.asideMenuButton`, `.aside-container`, `.dynamicSidebar`, `.widget`, `.widgetTitle`
-- `.container-fluid` footer styles
-
-### Phase 2 (Bootstrap integration)
-Keep existing Bootstrap CSS files untouched. `site.css` overrides or extends Bootstrap where needed.
-
-### Phase 3 (cleanup)
-Remove Bootstrap shell-specific overrides that no longer apply:
-- `.head-format` (blue header)
-- `#section1` through `#section5` (colored scrollspy sections)
-- Scrollspy-specific affix + sidebar rules
-
----
-
-## 12. Responsive Breakpoints
-
-| Breakpoint | Behavior |
-|---|---|
-| `>= 768px` | 3-column layout: left nav + content + aside |
-| `< 768px` | Stacked: header → menu toggle → content → sidebar toggle → aside → footer |
-
-Mobile toggles use the ipage `.navMenuButton` / `.asideMenuButton` pattern (3 `<hr>` bars).
+| `spritesheet.png` | `Design/` | UI sprite sheet |
+| `headerimg.jpg` | `Design/` | Header image variant |
+| `footer.jpg` | `Design/` | Footer image |
+| `sidebarimg.png` | `Design/` | Sidebar image |
+| `*.GIF` | `Gameplay/` | In-game clip assets |

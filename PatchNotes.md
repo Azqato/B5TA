@@ -2,36 +2,93 @@
 
 ---
 
+## v1.0 — 2026-06-07
+
+### Major Release — Full ipage Migration to Static HTML
+
+This is the first complete release of the rebuilt B5TA website. The site has been fully migrated from the original Bootstrap PHP shell to a static HTML implementation based on the original `b5ta.com` ipage design. The site now runs on GitHub Pages with no server-side dependencies.
+
+---
+
+### Architecture
+
+**PHP → Static HTML**
+- Converted all pages from `.php` to `.html`
+- Removed `includes/header.php` and `includes/footer.php` PHP includes
+- Inlined header and footer HTML directly into each page
+- Per-page active navigation state hardcoded in each file (replaces PHP `$activePage` variable)
+- Removed all `$scrollspy`, inline `<style>` blocks, and Bootstrap colored section markup
+
+**GitHub Pages Ready**
+- Added `.nojekyll` to disable Jekyll processing
+- All asset paths are relative — works locally and at `azqato.github.io/B5TA/`
+- No PHP server required
+
+---
+
+### Files Created
+
+| File | Description |
+|---|---|
+| `index.html` | Homepage — ipage article layout with welcome, RuneScape, LoL, SW, Minecraft sections |
+| `about.html` | About page — 8-item clan founding/rules/conduct list |
+| `discord.html` | Discord page — download + invite links + animated banner |
+| `guides.html` | Guides index — category links + community guides |
+| `guides-bossing.html` | Bossing guides stub |
+| `guides-money-making.html` | Money Making guides stub |
+| `guides-quests.html` | Quest guides stub |
+| `guides-skilling.html` | Skilling guides stub |
+| `.nojekyll` | Disables GitHub Pages Jekyll processing |
+
+---
+
+### Files Removed
+
+| File | Reason |
+|---|---|
+| `index.php` | Replaced by `index.html` |
+| `about.php` | Replaced by `about.html` |
+| `discord.php` | Replaced by `discord.html` |
+| `guides.php` | Replaced by `guides.html` |
+| `guides-bossing.php` | Replaced by `guides-bossing.html` |
+| `guides-money-making.php` | Replaced by `guides-money-making.html` |
+| `guides-quests.php` | Replaced by `guides-quests.html` |
+| `guides-skilling.php` | Replaced by `guides-skilling.html` |
+| `includes/header.php` | Inlined into each HTML page |
+| `includes/footer.php` | Inlined into each HTML page |
+
+---
+
+### Documentation Updated
+
+- `ReadMe.md` — Updated to reflect completed migration, static HTML architecture, GitHub Pages deployment, new file structure, and accurate page status table
+- `PRD.md` — Updated status to Complete; all success criteria checked; file references updated from `.php` to `.html`; open question on PHP vs static resolved
+- `Design.md` — Updated markup examples to use `.html` links; updated layout diagram with accurate column widths; added desktop/mobile breakpoint details; updated active state notes for static HTML
+- `TRD.md` — Complete rewrite: PHP include architecture replaced with static HTML architecture; deployment section updated to GitHub Pages; migration steps marked complete; known issues documented
+
+---
+
+### Open Items
+
+- Discord invite URL (`discord.html` step 2) may be expired — needs updating with current invite link
+- Guide sub-pages (Bossing, Money Making, Quests, Skilling) are content stubs
+- Flip Chart page referenced in nav but not yet created
+
+---
+
 ## v0.5 — 2026-06-07
 
-### ipage Migration — Execution Complete
+### ipage Migration — Page Rewrites
 
-All pages have been rewritten to use the ipage article layout (`pageContainer` / `entry entryTypePost` / `entryHeader` / `entryContent`). The old Bootstrap scrollspy, coloured sections, inline `<style>` blocks, and `container page-content` wrappers have been removed from every page.
+All pages rewritten to use the ipage article layout (`pageContainer` / `entry entryTypePost` / `entryHeader` / `entryContent`). Old Bootstrap scrollspy, coloured sections, inline `<style>` blocks, and `container page-content` wrappers removed.
 
 #### Pages Rewritten
 
-- **`index.php`** — Removed `$scrollspy`, inline `<style>`, scrollspy nav, Bootstrap grid wrappers, and 5 coloured `<div id="...">` sections. All homepage content from `ipage/homepage.html` preserved inside `.entryContent`. Welcome h2 with `clan.png` float-right, RuneScape/LoL/SW/Minecraft sections.
-- **`about.php`** — Rewritten with `.pageContainer` / `entryHeader` / `entryContent`. 8-item `<ul>` about founding, rules, promotion, conduct preserved. "Join our Discord" link replaces Bootstrap button.
-- **`discord.php`** — Rewritten with article layout. Updated Discord download URL to `discord.com/download`. `wfbCHon.gif` preserved. Discord invite link preserved pending update.
-- **`guides.php`** — Rewritten with article layout. Category links and community guide links preserved with `rel="noopener"`.
-- **`guides-bossing.php`** — Updated to article layout.
-- **`guides-money-making.php`** — Updated to article layout.
-- **`guides-quests.php`** — Updated to article layout.
-- **`guides-skilling.php`** — Updated to article layout.
-
-### Migration Status
-
-The full ipage 3-column layout is now live across all pages:
-- Fixed 100px header with logo banner (`Logos/0jK9PZV.png`)
-- Left sidebar nav (off-canvas mobile / always-on 1200px+)
-- Right aside with Pages and External Links widgets (off-canvas mobile / always-on 1200px+)
-- All content in `pageContainer` / article structure matching ipage design
-
-### Next Steps
-
-- Test site on a PHP server (XAMPP / WAMP)
-- Update Discord invite URL in `discord.php` and `includes/header.php` once current link is confirmed
-- Commit and push all changes to GitHub
+- **`index.php`** — Removed `$scrollspy`, inline `<style>`, scrollspy nav, Bootstrap grid. Homepage content in `.entryContent`.
+- **`about.php`** — `.pageContainer` + `entryHeader` + 8-item about list.
+- **`discord.php`** — Article layout; updated Discord download URL to `discord.com`.
+- **`guides.php`** — Article layout; category + community guide links with `rel="noopener"`.
+- **`guides-bossing.php`**, **`guides-money-making.php`**, **`guides-quests.php`**, **`guides-skilling.php`** — Updated to article layout.
 
 ---
 
@@ -40,30 +97,18 @@ The full ipage 3-column layout is now live across all pages:
 ### Migration Planning
 
 - Analyzed `ipage/` archive (4 HTML saves of the original b5ta.com WordPress site) and documented full structure, layout, and content
-- Rewrote `ReadMe.md` to reflect both the ipage design target and the current Bootstrap shell, with a clear migration status table, full repository structure, and asset inventory
-- Created `PRD.md` — Product Requirements Document covering all target pages, user types, navigation requirements, non-functional requirements, and open questions
-- Created `Design.md` — Design specification documenting the ipage layout (3-column header/sidebar/content/aside), HTML markup patterns, color palette, typography, asset reference, CSS extraction strategy, and responsive breakpoints
-- Created `TRD.md` — Technical Requirements Document covering file structure, PHP include architecture, CSS extraction plan, JavaScript changes, page-by-page implementation steps, deployment options, and ordered migration execution steps
+- Rewrote `ReadMe.md` to reflect both the ipage design target and the current Bootstrap shell
+- Created `PRD.md` — Product Requirements Document
+- Created `Design.md` — Design specification
+- Created `TRD.md` — Technical Requirements Document
 
-### Files Created (Draft — pending migration rewrite)
+### Infrastructure (v0.4)
 
-- `about.php` — About page with ipage content
-- `discord.php` — Discord invite page with ipage content
-- `guides.php` — Guides index with ipage community guide links
-- `guides-bossing.php`, `guides-money-making.php`, `guides-quests.php`, `guides-skilling.php` — Category stubs
-- `includes/header.php` — Shared Bootstrap-based header + navbar (draft, to be rewritten per TRD)
-- `includes/footer.php` — Shared footer (draft, to be rewritten per TRD)
-
-### `index.php` Changes (Draft — to be rewritten)
-
-- Replaced 5 placeholder Bootstrap sections with real homepage content from `ipage/homepage.html`
-- Renamed scroll sections: welcome, runescape, games, discord, about
-- Connected scrollspy sidebar labels to new section IDs
-- Added `Logos/clan.png` to welcome section
-
-### Next Step
-
-Execute the migration plan defined in `TRD.md` §9: extract ipage CSS into `css/site.css`, rebuild `includes/header.php` and `includes/footer.php` with the ipage 3-column layout, and rewrite all pages to use the ipage article structure. ipage design takes full priority.
+- Created `css/site.css` — full ipage 3-column layout CSS (fixed header, off-canvas sidebars, article styles)
+- Created `js/site.js` — mobile sidebar toggles, overlay, sub-menu, scroll-to-top
+- Rewrote `includes/header.php` — fixed header with logo banner, hamburger buttons, left sidebar nav, overlay, container-fluid open
+- Rewrote `includes/footer.php` — site footer, right aside with Pages/External Links widgets, scroll-to-top button, JS loading
+- Renamed `ipage Migration/` → `ipage/`
 
 ---
 
@@ -72,9 +117,8 @@ Execute the migration plan defined in `TRD.md` §9: extract ipage CSS into `css/
 ### Documentation
 
 - Rewrote `README.md` with two clearly separated sections
-- **Website Overview** section now accurately documents every file in the repository (JS, CSS, images, fonts) based directly on source code
-- **About Clan B5TA** section added as a standalone informational summary of the clan — covering its founding, core activities, community values, Twitch streaming network, and membership system
-- Added live site link to [azqato.github.io/b5ta-website](https://azqato.github.io/b5ta-website) at the top of the README
+- **Website Overview** — documents every file in the repository
+- **About Clan B5TA** — standalone informational summary of the clan
 
 ---
 
@@ -82,12 +126,12 @@ Execute the migration plan defined in `TRD.md` §9: extract ipage CSS into `css/
 
 ### Homepage
 
-- Overhauled `index.php` with an expanded and restructured layout
-- Added fixed responsive navbar with Home, Discord, Guides dropdown (Bossing, Money Making, Quests, Skilling), Flip Chart, Contact, and Log In links
+- Overhauled `index.php` with expanded layout
+- Added fixed responsive navbar with Home, Discord, Guides dropdown, Flip Chart, Contact, Log In
 - Added blue header banner displaying the B5TA clan logo
 - Added scrollspy sidebar with links to five content sections
 - Added semi-transparent navbar that becomes fully opaque on hover
-- Added responsive mobile support — dropdown hover disabled and carets hidden on screens under 767px
+- Added responsive mobile support
 
 ---
 
@@ -97,14 +141,9 @@ Execute the migration plan defined in `TRD.md` §9: extract ipage CSS into `css/
 
 - Initial project setup with `README.md` and `LICENSE` (MIT)
 - Added `index.php` as the main entry point
-- Added Bootstrap 3 framework (`bootstrap.css`, `bootstrap.min.css`, `bootstrap-theme.css`)
-- Added `dropdownhover.css` and `dropdownmenu.css` for navbar dropdown styling
-- Added `externalstyle.css` for custom site styles including navbar opacity, tab panels, and responsive breakpoints
-- Added jQuery library (`jquery.js`, `jquery.min.js`)
-- Added Bootstrap JS plugins (`bootstrap.js`, `bootstrap.min.js`)
-- Added `dropdown.js` for hover-activated dropdown behavior
-- Added `externalscript.js` for tab switching (Tutorials, Reviews, Impressions) and scroll-to-top
-- Added `destroyvid.js` to stop and reset up to 14 embedded YouTube players on modal close
-- Added `npm.js` as Bootstrap's npm entry point
-- Added Glyphicons web fonts (`.eot`, `.woff`, `.woff2`, `.ttf`, `.svg`)
+- Added Bootstrap 3 framework
+- Added jQuery library
+- Added Bootstrap JS plugins
+- Added `dropdown.js`, `externalscript.js`, `destroyvid.js`
+- Added Glyphicons web fonts
 - Added `images/b5talogo.png` and `images/discord.jpg`

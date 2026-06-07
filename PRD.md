@@ -2,7 +2,7 @@
 
 **Version:** 1.0
 **Date:** 2026-06-07
-**Status:** Planning
+**Status:** Complete
 
 ---
 
@@ -14,15 +14,16 @@ The B5TA clan website is the public-facing home for Clan B5TA, a RuneScape commu
 
 ### Goal
 
-Rebuild the site using the original `b5ta.com` design (archived in `ipage/`) as the design priority, running on the existing Bootstrap 3 + jQuery codebase rather than WordPress. The result should be a maintainable, static-friendly PHP site that matches the look and feel of the original.
+Rebuild the site using the original `b5ta.com` design (archived in `ipage/`) as the design priority, running as static HTML on GitHub Pages. The result matches the look and feel of the original WikiWP/WordPress site without any server-side dependencies.
 
 ### Success Criteria
 
-- All four ipage pages (Home, About, Discord, Guides) are live and visually match the ipage design
-- The left sidebar navigation is functional on all pages
-- All existing real guide links from `ipage/guides.html` are preserved
-- The site renders correctly in a modern browser without a WordPress backend
-- Files are organized to allow easy future addition of new pages and content
+- ✅ All four ipage pages (Home, About, Discord, Guides) are live and visually match the ipage design
+- ✅ The left sidebar navigation is functional on all pages with correct active states
+- ✅ All existing real guide links from `ipage/guides.html` are preserved
+- ✅ The site renders correctly in a modern browser
+- ✅ Files are organized to allow easy future addition of new pages and content
+- ✅ Site is hosted on GitHub Pages — no PHP server required
 
 ---
 
@@ -39,27 +40,27 @@ Rebuild the site using the original `b5ta.com` design (archived in `ipage/`) as 
 
 ## 3. Pages and Features
 
-### 3.1 Homepage (`index.php`)
+### 3.1 Homepage (`index.html`)
 
-**Priority:** P0
+**Priority:** P0 — **Status: Complete**
 
 **Content (from `ipage/homepage.html`):**
-- Welcome heading + `clan.png` image
+- Welcome heading + `clan.png` image floated right
 - Clan description ("drama-free community")
-- Discord join CTA (centered)
-- Founded date callout (centered)
+- Discord join CTA
+- Founded date
 - RuneScape section: teach bosses, gp/day, efficient leveling, conduct rules
 - League of Legends section: normal games, ranked duos, clash
 - Summoners War section: labyrinth, guild wars, raids
 - Minecraft section: factions, survival
 
-**Layout:** ipage article layout (white background, left sidebar, right aside)
+**Layout:** ipage article layout — `.pageContainer` / `article.entry.entryTypePost` / `.entryContent`
 
 ---
 
-### 3.2 About (`about.php`)
+### 3.2 About (`about.html`)
 
-**Priority:** P0
+**Priority:** P0 — **Status: Complete**
 
 **Content (from `ipage/about.html`):**
 - Founding: September 30th, 2014 by zoop
@@ -68,28 +69,28 @@ Rebuild the site using the original `b5ta.com` design (archived in `ipage/`) as 
 - Rules: respect + follow RS ToS
 - Promotion path: active + cap citadel + invite members
 - Inactivity policy: kicked after 6 months if under 1,500 total level
-- Conduct policy quote from zoop (Threatening Behavior, Harassment, Botting, Luring, Scamming)
+- Conduct policy quote from zoop
 
 **Layout:** ipage article layout
 
 ---
 
-### 3.3 Discord (`discord.php`)
+### 3.3 Discord (`discord.html`)
 
-**Priority:** P0
+**Priority:** P0 — **Status: Complete**
 
 **Content (from `ipage/discord.html`):**
 - Step 1: Download Discord link
-- Step 2: B5TA invite link *(invite URL needs to be updated — original is expired)*
+- Step 2: B5TA invite link *(invite URL needs to be updated — original may be expired)*
 - `wfbCHon.gif` animated banner centered below
 
 **Layout:** ipage article layout
 
 ---
 
-### 3.4 Guides (`guides.php`)
+### 3.4 Guides (`guides.html`)
 
-**Priority:** P0
+**Priority:** P0 — **Status: Complete**
 
 **Content (from `ipage/guides.html`):**
 - Category links: Bossing, Money Making, Quests, Skilling
@@ -106,101 +107,89 @@ Rebuild the site using the original `b5ta.com` design (archived in `ipage/`) as 
 
 ### 3.5 Guide Category Pages
 
-**Priority:** P1
-
-Four pages, one per category:
+**Priority:** P1 — **Status: Stub (content TBD)**
 
 | Page | File | Status |
 |---|---|---|
-| Bossing | `guides-bossing.php` | Stub — content TBD |
-| Money Making | `guides-money-making.php` | Stub — content TBD |
-| Quests | `guides-quests.php` | Stub — content TBD |
-| Skilling | `guides-skilling.php` | Stub — content TBD |
+| Bossing | `guides-bossing.html` | Stub |
+| Money Making | `guides-money-making.html` | Stub |
+| Quests | `guides-quests.html` | Stub |
+| Skilling | `guides-skilling.html` | Stub |
 
-Each stub should display a "coming soon" message and a back link to Guides. Content to be filled in by clan members.
-
----
-
-### 3.6 Flip Chart (`flip-chart.php`)
-
-**Priority:** P2
-
-Grand Exchange item flipping tracker. Referenced in the Bootstrap navbar. Details TBD.
+Each stub displays a "coming soon" message with a back link to Guides. Content to be filled in by clan members.
 
 ---
 
-### 3.7 Contact (`contact.php`)
+### 3.6 Flip Chart
 
-**Priority:** P2
+**Priority:** P2 — **Status: Not started**
 
-Contact form or redirect to Discord. Details TBD.
+Grand Exchange item flipping tracker. Nav link exists but page not yet created.
 
 ---
 
-### 3.8 Future Pages (referenced in ipage aside widget)
+### 3.7 Future Pages
 
 | Page | Notes |
 |---|---|
-| Join (`join.php`) | Join form or instructions |
-| New Member Guide (`new-member-guide.php`) | Dedicated guide page |
-| User EXP Tracker (`exp-tracker.php`) | RS XP tracking tool |
+| Join | Join form or instructions |
+| New Member Guide | Dedicated guide page |
+| User EXP Tracker | RS XP tracking tool |
+| Contact | Contact form or Discord redirect |
 
 ---
 
 ## 4. Navigation
 
-### Primary Navigation (Left Sidebar — ipage style)
-
-Required links for the rebuild:
+### Primary Navigation (Left Sidebar)
 
 | Label | Destination | Type |
 |---|---|---|
-| Home | `index.php` | Internal |
-| About | `about.php` | Internal |
-| Discord | `discord.php` | Internal |
-| Guides | `guides.php` | Internal |
-| Flip Chart | `flip-chart.php` | Internal (stub) |
+| Home | `index.html` | Internal |
+| About | `about.html` | Internal |
+| Discord | `discord.html` | Internal |
+| Guides | `guides.html` | Internal (with sub-menu) |
+| Flip Chart | — | Internal (stub) |
 | Official Clan Page | RS clan page URL | External |
 | Runeclan | runeclan.com/clan/B5TA | External |
-| Donate | Patreon link | External |
+| Merchandise | zazzle.com/clanb5ta | External |
 
 ### Mobile Navigation
 
-The ipage design uses a mobile hamburger ("Menu" label, 3 `<hr>` bars) to toggle the sidebar. This behavior must be preserved for mobile viewports.
+Hamburger buttons (`.navMenuButton` / `.asideMenuButton`) toggle the left and right sidebars. Implemented in `js/site.js` with `.is-open` class toggling and an overlay.
 
 ---
 
 ## 5. Non-Functional Requirements
 
-| Requirement | Detail |
+| Requirement | Status |
 |---|---|
-| Browser support | Modern evergreen browsers (Chrome, Firefox, Edge, Safari) |
-| Mobile responsiveness | Must work on phones and tablets; sidebar collapses on mobile |
-| GitHub Pages compatibility | Static output (no server-side PHP execution) OR PHP server required |
-| No WordPress dependency | The ipage CSS/JS from WordPress is for reference only; rebuild without Jetpack, W3TC, etc. |
-| Asset self-hosting | All fonts, images, CSS, JS served locally (no CDN dependencies) |
-| Preserve ipage archive | `ipage/` folder stays in the repo as a reference; not served to end users |
+| Modern browser support (Chrome, Firefox, Edge, Safari) | ✅ |
+| Mobile responsive — sidebars collapse on mobile | ✅ |
+| GitHub Pages compatible — no PHP required | ✅ |
+| No WordPress dependency | ✅ |
+| All assets self-hosted | ✅ |
+| ipage archive preserved in repo | ✅ |
 
 ---
 
-## 6. Out of Scope (v1)
+## 6. Out of Scope (v1.0)
 
 - User login / accounts
 - Database integration
 - Dynamic content (blog posts, news feed)
-- Search functionality
+- Functional search
 - Analytics integration
-- Email subscription (replace Jetpack subscribe widget with a placeholder or remove)
+- Email subscription widget
 - Merchandise store (external link only)
 
 ---
 
 ## 7. Open Questions
 
-| Question | Owner |
+| Question | Status |
 |---|---|
-| What is the current B5TA Discord invite link? | Clan owner |
-| Should the site be PHP (b5ta.com server) or static HTML (GitHub Pages)? | Clan owner |
-| What content goes in Bossing / Quests / Skilling guide pages? | Clan members |
-| Should Merchandise and Donate links be kept in the sidebar? | Clan owner |
-| Is the Patreon link still active? | Clan owner |
+| What is the current B5TA Discord invite link? | **Open** — current link may be expired |
+| What content goes in Bossing / Quests / Skilling guide pages? | **Open** — awaiting clan member contributions |
+| Should Merchandise and Donate links be kept in the sidebar? | **Open** |
+| Is the Patreon link still active? | **Open** — Donate link removed from v1.0 nav |
