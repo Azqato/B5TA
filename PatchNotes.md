@@ -2,6 +2,36 @@
 
 ---
 
+## v1.3 — 2026-06-07
+
+### Repository Cleanup — ipage Merge and Asset Consolidation
+
+Merged the `ipage/` directory into the main repository and removed all duplicate and obsolete files, resulting in a clean, flat file structure.
+
+**ipage/ directory removed:**
+- Deleted 4 WordPress archive HTML pages (content fully migrated to main site)
+- Deleted 4 `*_files/` directories (~30 files each: WordPress theme CSS, Jetpack JS, portal pages, duplicate images)
+- Moved `wfbCHon.gif` → `Logos/wfbCHon.gif` (only unique asset referenced by main site)
+- Moved `MVP.docx` and `Screenshot.JPG` to repository root
+
+**Stale CSS removed** (unreferenced by any page):
+- `css/bootstrap-theme.css` + `.min.css` + `.map` files
+- `css/bootstrap.min.css` + `.map`
+- `css/dropdownhover.css`, `css/dropdownmenu.css`, `css/externalstyle.css`
+
+**Stale JS removed** (unreferenced by any page):
+- `js/bootstrap.min.js`, `js/jquery.js`, `js/npm.js`, `js/destroyvid.js`
+
+**Empty directories removed:**
+- `images/`, `Gameplay/`, `Design/`, `includes/`
+
+**`discord.html` updated:**
+- `ipage/discord_files/wfbCHon.gif` → `Logos/wfbCHon.gif`
+
+**Documentation updated:** `ReadMe.md`, `TRD.md`, `Design.md`, `PRD.md`
+
+---
+
 ## v1.2 — 2026-06-07
 
 ### Guide Pages — Content Complete

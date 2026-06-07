@@ -7,26 +7,15 @@
 
 ## Project Status
 
-**Migration complete.** The site has been fully rebuilt using the original `b5ta.com` design (archived in `ipage/`) as the design priority. It is now a static HTML site served via GitHub Pages — no PHP server required.
+**Migration complete.** The site has been fully rebuilt using the original `b5ta.com` design (WordPress/WikiWP theme, circa 2020) as the design priority. It runs as static HTML served via GitHub Pages — no PHP server required. The ipage archive has been merged into the main repository and removed; all unique assets have been consolidated.
 
 See [`PRD.md`](PRD.md), [`Design.md`](Design.md), [`TRD.md`](TRD.md), and [`PatchNotes.md`](PatchNotes.md) for full plans and history.
 
 ---
 
-## Design — ipage Archive
+## Design
 
-The `ipage/` folder contains four HTML saves of the original `b5ta.com` pages (WordPress/WikiWP theme, circa 2020). These define the structure, layout, and content that was reproduced.
-
-### ipage Pages
-
-| File | Origin URL | Content |
-|---|---|---|
-| `ipage/homepage.html` | `b5ta.com/` | Welcome message, clan.png, RuneScape / LoL / Summoners War / Minecraft sections |
-| `ipage/about.html` | `b5ta.com/about-us/` | Founding story, rules, promotion path, conduct policy |
-| `ipage/discord.html` | `b5ta.com/discord/` | Discord download link, invite link, animated banner gif |
-| `ipage/guides.html` | `b5ta.com/guides/` | Community guides list with external Google Docs and RS links |
-
-Each page has a matching `*_files/` directory containing the original CSS, JS, and image assets.
+The site reproduces the layout of the original `b5ta.com` WordPress/WikiWP theme: a 3-column desktop layout with a fixed left navigation, article content area, and right aside. Bootstrap 3 provides the base framework; `css/site.css` defines the ipage layout system.
 
 ### Layout Structure
 
@@ -59,17 +48,17 @@ Mobile (`< 1200px`): both sidebars collapse to off-canvas; hamburger buttons tog
 
 ## Site Pages
 
-| Page | File | Status | Source |
-|---|---|---|---|
-| Homepage | `index.html` | ✅ Live | `ipage/homepage.html` |
-| About | `about.html` | ✅ Live | `ipage/about.html` |
-| Discord | `discord.html` | ✅ Live | `ipage/discord.html` |
-| Guides index | `guides.html` | ✅ Live | `ipage/guides.html` |
-| Bossing | `guides-bossing.html` | ✅ Stub | — |
-| Money Making | `guides-money-making.html` | ✅ Stub | — |
-| Quests | `guides-quests.html` | ✅ Stub | — |
-| Skilling | `guides-skilling.html` | ✅ Stub | — |
-| Flip Chart | `flip-chart.html` | ✅ Stub | — |
+| Page | File | Status |
+|---|---|---|
+| Homepage | `index.html` | ✅ Live |
+| About | `about.html` | ✅ Live |
+| Discord | `discord.html` | ✅ Live |
+| Guides index | `guides.html` | ✅ Live |
+| Bossing | `guides-bossing.html` | ✅ Live |
+| Money Making | `guides-money-making.html` | ✅ Live |
+| Quests | `guides-quests.html` | ✅ Live |
+| Skilling | `guides-skilling.html` | ✅ Live |
+| Flip Chart | `flip-chart.html` | ✅ Live |
 
 ---
 
@@ -85,13 +74,11 @@ B5TA/
 ├── guides-money-making.html
 ├── guides-quests.html
 ├── guides-skilling.html
+├── flip-chart.html
 │
 ├── css/
-│   ├── site.css                ← ipage layout CSS (custom)
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap-theme.css
-│   └── [other Bootstrap CSS]
+│   ├── site.css                ← ipage 3-column layout CSS (custom)
+│   └── bootstrap.css
 │
 ├── js/
 │   ├── site.js                 ← mobile nav/aside toggle (custom)
@@ -103,24 +90,14 @@ B5TA/
 │   ├── 0jK9PZV.png             ← header banner logo
 │   ├── clan.png                ← homepage float-right image
 │   ├── favicon.png             ← browser tab icon
-│   └── [other logo variants]
+│   ├── wfbCHon.gif             ← Discord page animated banner
+│   └── [other logo variants and branding assets]
 │
-├── ipage/                      ← original site archive (design reference)
-│   ├── homepage.html
-│   ├── about.html
-│   ├── discord.html
-│   ├── guides.html
-│   ├── homepage_files/
-│   ├── about_files/
-│   ├── discord_files/
-│   └── guides_files/
-│
-├── Design/                     ← design assets (sprites, header/footer images)
-├── Gameplay/                   ← gameplay media assets
-├── images/                     ← legacy images
 ├── fonts/                      ← Bootstrap Glyphicons
 │
 ├── .nojekyll                   ← disables Jekyll processing on GitHub Pages
+├── MVP.docx
+├── Screenshot.JPG
 ├── ReadMe.md
 ├── PRD.md
 ├── Design.md
@@ -139,7 +116,7 @@ B5TA/
 | Interactivity | JavaScript + jQuery |
 | Framework | Bootstrap 3 |
 | Hosting | GitHub Pages (static) |
-| Original CMS | WordPress + WikiWP *(reference only — ipage archive)* |
+| Original CMS | WordPress + WikiWP *(reference — ipage design archived and merged)* |
 
 ---
 
@@ -149,11 +126,6 @@ B5TA/
 |---|---|
 | `site.css` | ipage 3-column layout: fixed header, off-canvas sidebars, article styles |
 | `bootstrap.css` | Bootstrap 3 core |
-| `bootstrap.min.css` | Bootstrap 3 minified |
-| `bootstrap-theme.css` | Bootstrap default theme |
-| `dropdownhover.css` | Hover dropdown styles |
-| `dropdownmenu.css` | Dropdown menu layout |
-| `externalstyle.css` | Legacy custom overrides |
 
 ## JavaScript (`js/`)
 
@@ -162,9 +134,7 @@ B5TA/
 | `site.js` | Mobile sidebar toggles, overlay, sub-menu expand, scroll-to-top |
 | `jquery.min.js` | jQuery library |
 | `bootstrap.js` | Bootstrap interactive components |
-| `externalscript.js` | Scroll-to-top (legacy) |
-| `dropdown.js` | Hover dropdown behavior |
-| `destroyvid.js` | Stops YouTube players on modal close |
+| `externalscript.js` | External behaviors |
 
 ---
 
@@ -178,7 +148,7 @@ B5TA is also a **Twitch streaming community**, maintaining a network of member s
 
 Active participation is a core part of membership — capping in the Clan Citadel weekly and helping recruit new members are both recognized paths to promotion.
 
-For more information, visit [b5ta.com](https://www.b5ta.com) or join the community on [Discord](https://b5ta.com/discord/).
+For more information, visit [b5ta.com](https://www.b5ta.com) or join the community on [Discord](https://discord.gg/0qfZioFZLSnmWMs7).
 
 ---
 

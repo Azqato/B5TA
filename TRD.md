@@ -34,47 +34,28 @@ B5TA/
 ├── about.html                   ← About page
 ├── discord.html                 ← Discord page
 ├── guides.html                  ← Guides index
-├── guides-bossing.html          ← Bossing stub
-├── guides-money-making.html     ← Money Making stub
-├── guides-quests.html           ← Quests stub
-├── guides-skilling.html         ← Skilling stub
+├── guides-bossing.html          ← Bossing guides
+├── guides-money-making.html     ← Money Making guides
+├── guides-quests.html           ← Quest guides
+├── guides-skilling.html         ← Skilling guides
+├── flip-chart.html              ← Flip Chart
 │
 ├── css/
 │   ├── site.css                 ← ipage layout CSS (custom, replaces WordPress 73795.css)
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap-theme.css
-│   ├── bootstrap-theme.min.css
-│   ├── dropdownhover.css
-│   ├── dropdownmenu.css
-│   └── externalstyle.css
+│   └── bootstrap.css
 │
 ├── js/
 │   ├── site.js                  ← mobile nav/aside toggle (custom)
 │   ├── jquery.min.js
 │   ├── bootstrap.js
-│   ├── bootstrap.min.js
-│   ├── dropdown.js
-│   ├── externalscript.js
-│   └── destroyvid.js
+│   └── externalscript.js
 │
-├── Logos/                       ← Logo images (0jK9PZV.png, clan.png, favicon, etc.)
-├── images/                      ← Legacy images
-├── Design/                      ← Design assets (sprites, header/footer/sidebar images)
-├── Gameplay/                    ← Gameplay media assets
+├── Logos/                       ← Logo/image assets (0jK9PZV.png, clan.png, favicon.png, wfbCHon.gif, etc.)
 ├── fonts/                       ← Bootstrap Glyphicons
 │
-├── ipage/                       ← Original site archive (reference only)
-│   ├── homepage.html
-│   ├── about.html
-│   ├── discord.html
-│   ├── guides.html
-│   ├── homepage_files/
-│   ├── about_files/
-│   ├── discord_files/
-│   └── guides_files/
-│
 ├── .nojekyll                    ← Disables GitHub Pages Jekyll processing
+├── MVP.docx
+├── Screenshot.JPG
 ├── ReadMe.md
 ├── PRD.md
 ├── Design.md

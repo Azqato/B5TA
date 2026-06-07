@@ -286,9 +286,4 @@ No custom web fonts beyond Bootstrap's Glyphicons (in `fonts/`).
 
 | File | Location | Use |
 |---|---|---|
-| `wfbCHon.gif` | `ipage/discord_files/` | Discord page animated banner |
-| `spritesheet.png` | `Design/` | UI sprite sheet |
-| `headerimg.jpg` | `Design/` | Header image variant |
-| `footer.jpg` | `Design/` | Footer image |
-| `sidebarimg.png` | `Design/` | Sidebar image |
-| `*.GIF` | `Gameplay/` | In-game clip assets |
+| `wfbCHon.gif` | `Logos/` | Discord page animated banner |

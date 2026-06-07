@@ -169,7 +169,7 @@ Hamburger buttons (`.navMenuButton` / `.asideMenuButton`) toggle the left and ri
 | GitHub Pages compatible — no PHP required | ✅ |
 | No WordPress dependency | ✅ |
 | All assets self-hosted | ✅ |
-| ipage archive preserved in repo | ✅ |
+| ipage archive merged into repo; unique assets consolidated | ✅ |
 
 ---
 
