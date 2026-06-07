@@ -1,0 +1,487 @@
+/*
+ * B5TA Site CSS
+ * Layout extracted from ipage/WikiWP design — reimplemented without WordPress
+ * Loads after bootstrap.css; overrides and extends Bootstrap where needed.
+ */
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+body {
+  position: relative;
+  background: #fff;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+article { margin: 0; }
+img { max-width: 100%; height: auto; }
+
+a { color: #2487d7; }
+a:hover { color: #1a5fa0; text-decoration: underline; }
+
+
+/* ============================================================
+   HEADER  (fixed, full-width, 100px tall at all sizes)
+   ============================================================ */
+
+.headerMain {
+  position: fixed;
+  z-index: 1000;
+  top: 0; left: 0; right: 0;
+  height: 100px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-content {
+  height: 100%;
+  padding: 10px 60px;           /* horizontal room for the hamburger buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#logo { text-align: center; }
+
+#site-logo { display: inline-block; }
+
+.logo-img {
+  max-height: 60px;
+  width: auto;
+}
+
+.blog-description {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78em;
+  color: #aaa;
+  text-align: center;
+}
+
+
+/* ============================================================
+   META BAR  (search, sits below fixed header)
+   ============================================================ */
+
+.meta {
+  margin-top: 100px;            /* clear the fixed header */
+  padding: 6px 15px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 0.85em;
+}
+
+.meta-search-form label {
+  display: inline-block;
+  margin: 0;
+  font-weight: normal;
+}
+
+.meta-search-form input[type="search"] {
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  background: transparent;
+  padding: 2px 4px;
+  outline: none;
+  width: 180px;
+  font-size: inherit;
+  transition: border-color 0.2s;
+}
+
+.meta-search-form input[type="search"]:focus {
+  border-color: #2487d7;
+}
+
+.meta-search-form input[type="submit"],
+.screen-reader-text { display: none !important; }
+
+
+/* ============================================================
+   MOBILE HAMBURGER — LEFT NAV
+   ============================================================ */
+
+.navMenuButton {
+  position: fixed;
+  z-index: 100001;
+  top: 0; left: 0;
+  width: 60px; height: 100px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.navMenuButton span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #888;
+  border-radius: 1px;
+  transition: background 0.2s;
+}
+
+.navMenuButton:hover span { background: #333; }
+
+
+/* ============================================================
+   MOBILE HAMBURGER — RIGHT ASIDE
+   ============================================================ */
+
+.asideMenuButton {
+  position: fixed;
+  z-index: 100001;
+  top: 0; right: 0;
+  width: 60px; height: 100px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.asideMenuButton span {
+  display: block;
+  width: 5px; height: 5px;
+  background: #bbb;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.asideMenuButton:hover span { background: #666; }
+
+
+/* ============================================================
+   LEFT SIDEBAR NAV  (off-canvas on mobile, always-on at 1200px+)
+   ============================================================ */
+
+.primary-menu {
+  position: fixed;
+  z-index: 9999;
+  top: 0; bottom: 0;
+  left: -265px;
+  width: 250px;
+  background: #333;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: left 0.25s ease;
+}
+
+.primary-menu.is-open { left: 0; }
+
+.primary-menu-container { padding: 105px 0 30px; }
+
+/* Nav list */
+.primary-menu ul.main-menu {
+  margin: 0; padding: 0;
+  list-style: none;
+}
+
+.primary-menu ul.main-menu > li { margin: 0; padding: 0; }
+
+.primary-menu .nav-container a {
+  display: block;
+  padding: 9px 15px;
+  border-left: 4px solid transparent;
+  color: #ddd;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.primary-menu .nav-container a:hover,
+.primary-menu .nav-container a:focus {
+  background: #444;
+  border-color: #666;
+  color: #fff;
+  text-decoration: none;
+}
+
+.primary-menu .current-menu-item > a,
+.primary-menu .current_page_item > a {
+  background: #444;
+  border-color: #777;
+  color: #fff;
+}
+
+/* Sub-menu */
+.primary-menu .sub-menu {
+  display: none;
+  margin: 0; padding: 0;
+  list-style: none;
+  background: #2a2a2a;
+}
+
+.primary-menu .menu-item-has-children.sub-open > .sub-menu { display: block; }
+
+.primary-menu .sub-menu a {
+  padding-left: 28px;
+  font-size: 0.85em;
+  color: #bbb;
+}
+
+.primary-menu .sub-menu a:hover { color: #fff; background: #383838; }
+
+/* Sub-menu toggle arrow */
+.primary-menu .menu-item-has-children > a::after {
+  content: "›";
+  float: right;
+  opacity: 0.5;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.primary-menu .menu-item-has-children.sub-open > a::after {
+  content: "›";
+  transform: rotate(90deg);
+  display: inline-block;
+  opacity: 0.8;
+}
+
+/* Section divider */
+.primary-menu .menu-section-divider {
+  border-top: 1px solid #555;
+  margin: 8px 15px;
+}
+
+
+/* ============================================================
+   CONTAINER + PAGE CONTENT
+   ============================================================ */
+
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
+
+/* The page content wrapper — matches ipage .pageContainer */
+.pageContainer {
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  background: #fff;
+  min-height: 400px;
+}
+
+/* Article header (page title area) */
+.entryHeader {
+  padding: 20px 30px 12px;
+}
+
+.entryTitle {
+  margin: 0 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.8em;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+/* Article body */
+.entryContent {
+  padding: 20px 30px 30px;
+  max-width: 974px;
+}
+
+.entryContent h2 {
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-top: 1.5em;
+  line-height: 1.4;
+}
+
+.entryContent h3 { margin-top: 1.4em; }
+
+.entryContent p,
+.entryContent ul,
+.entryContent ol { margin-bottom: 1em; }
+
+.entryContent ul li,
+.entryContent ol li { margin-bottom: 0.3em; }
+
+.entryContent img.alignright,
+.entryContent img.pull-right {
+  float: right;
+  margin: 0 0 15px 20px;
+}
+
+/* Article footer */
+.entryMeta {
+  padding: 10px 30px;
+  border-top: 1px solid #e5e5e5;
+  font-size: 0.82em;
+  color: #999;
+  clear: both;
+}
+
+
+/* ============================================================
+   RIGHT ASIDE  (off-canvas on mobile, always-on at 1200px+)
+   ============================================================ */
+
+aside.site-aside {
+  position: fixed;
+  z-index: 9999;
+  top: 0; bottom: 0;
+  right: -320px;
+  width: 300px;
+  background: #fff;
+  border-left: 1px solid #e5e5e5;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  color: #4d4d4d;
+  transition: right 0.25s ease;
+}
+
+aside.site-aside.is-open { right: 0; }
+
+.aside-container { padding: 110px 15px 30px; }
+
+.widgetTitle {
+  font-size: 0.95em;
+  font-weight: bold;
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e5e5;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #666;
+}
+
+.widget { margin-bottom: 25px; }
+
+.widget ul {
+  margin: 0; padding: 0;
+  list-style: none;
+}
+
+.widget ul li {
+  padding: 5px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 0.88em;
+}
+
+.widget ul li:last-child { border-bottom: none; }
+
+.widget ul li a {
+  color: #2487d7;
+  text-decoration: none;
+}
+
+.widget ul li a:hover { text-decoration: underline; }
+
+.widget ul li.current-page,
+.widget ul li.current_page_item { font-weight: bold; }
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer.site-footer {
+  font-size: 0.82em;
+  color: #4d4d4d;
+  border: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  padding: 15px 30px;
+  background: #fff;
+  clear: both;
+}
+
+footer.site-footer a { color: #2487d7; }
+footer.site-footer p { margin: 0; }
+
+
+/* ============================================================
+   OVERLAY — dims page when sidebar is open on mobile
+   ============================================================ */
+
+.site-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.site-overlay.is-visible { display: block; }
+
+
+/* ============================================================
+   LARGE DESKTOP  1200px+
+   Three-column: sidebar (215px) | content | aside (300px)
+   ============================================================ */
+
+@media only screen and (min-width: 1200px) {
+
+  /* Sidebar: always visible, no transition, transparent bg */
+  .primary-menu {
+    left: 0;
+    width: 215px;
+    background: transparent;
+    border-right: 1px solid #e5e5e5;
+    transition: none;
+  }
+
+  .primary-menu-container { padding-top: 110px; }
+
+  /* Desktop light-mode nav */
+  .primary-menu .nav-container a {
+    color: #2487d7;
+    font-size: 0.88em;
+  }
+
+  .primary-menu .nav-container a:hover {
+    background: #f0f0f0;
+    border-color: #e8e8e8;
+    color: #1a5fa0;
+  }
+
+  .primary-menu .current-menu-item > a,
+  .primary-menu .current_page_item > a {
+    background: #e8e8e8;
+    border-color: #d0d0d0;
+    color: #1a5fa0;
+  }
+
+  .primary-menu .sub-menu { background: #f7f7f7; }
+  .primary-menu .sub-menu a { color: #2487d7; }
+  .primary-menu .sub-menu a:hover { background: #ebebeb; color: #1a5fa0; }
+  .primary-menu .menu-section-divider { border-color: #e5e5e5; }
+
+  /* Hide hamburger toggles */
+  .navMenuButton { display: none; }
+  .asideMenuButton { display: none; }
+
+  /* Meta and content get left/right margins for the sidebars */
+  .meta { margin-left: 215px; margin-right: 300px; }
+  .container-fluid { margin-left: 215px; margin-right: 300px; }
+
+  /* Aside: always visible, no transition */
+  aside.site-aside {
+    right: 0;
+    transition: none;
+  }
+
+  .aside-container { padding-top: 110px; }
+
+  /* No overlay on desktop */
+  .site-overlay { display: none !important; }
+}
+
+
+/* ============================================================
+   TABLET  768px – 1199px
+   ============================================================ */
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .primary-menu {
+    width: 250px;
+    left: -265px;
+  }
+
+  .primary-menu.is-open { left: 0; }
+}
