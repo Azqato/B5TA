@@ -81,7 +81,7 @@ Rebuild the site using the original `b5ta.com` design (archived in `ipage/`) as 
 
 **Content (from `ipage/discord.html`):**
 - Step 1: Download Discord link
-- Step 2: B5TA invite link *(invite URL needs to be updated — original may be expired)*
+- Step 2: B5TA invite link — `https://discord.gg/0qfZioFZLSnmWMs7` (permanent)
 - `wfbCHon.gif` animated banner centered below
 
 **Layout:** ipage article layout
@@ -189,7 +189,7 @@ Hamburger buttons (`.navMenuButton` / `.asideMenuButton`) toggle the left and ri
 
 | Question | Status |
 |---|---|
-| What is the current B5TA Discord invite link? | **Open** — current link may be expired |
+| What is the current B5TA Discord invite link? | **Resolved** — `https://discord.gg/0qfZioFZLSnmWMs7` (permanent) |
 | What content goes in Bossing / Quests / Skilling guide pages? | **Open** — awaiting clan member contributions |
 | Should Merchandise and Donate links be kept in the sidebar? | **Open** |
 | Is the Patreon link still active? | **Open** — Donate link removed from v1.0 nav |

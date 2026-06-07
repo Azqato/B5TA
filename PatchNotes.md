@@ -70,7 +70,7 @@ This is the first complete release of the rebuilt B5TA website. The site has bee
 
 ### Open Items
 
-- Discord invite URL (`discord.html` step 2) may be expired — needs updating with current invite link
+- ~~Discord invite URL~~ — confirmed: `https://discord.gg/0qfZioFZLSnmWMs7` is permanent, already set correctly
 - Guide sub-pages (Bossing, Money Making, Quests, Skilling) are content stubs
 - Flip Chart page referenced in nav but not yet created
 
