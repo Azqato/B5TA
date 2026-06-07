@@ -259,7 +259,7 @@ All steps from the original plan are complete:
 |---|---|---|
 | Discord invite URL | Resolved | `https://discord.gg/0qfZioFZLSnmWMs7` — confirmed permanent |
 | Guide sub-pages are stubs | Medium | Fill in content as clan members contribute |
-| Flip Chart page not created | Low | Nav link exists, page TBD |
+| Flip Chart page | Resolved | `flip-chart.html` stub created with link to community Flipping Guide |
 | Search bar is decorative | Low | Static site can't process search queries |
 | Duplicate maintenance across HTML files | Low | Any nav change requires updating all 8 files |
 

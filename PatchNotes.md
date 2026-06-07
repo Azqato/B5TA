@@ -2,6 +2,17 @@
 
 ---
 
+## v1.1 — 2026-06-07
+
+### Link Updates and Missing Pages
+
+- **Replaced Runeclan → RunePixels** across all 8 HTML pages (nav and aside): `http://www.runeclan.com/clan/B5TA` → `https://runepixels.com/clans/b5ta/about`, label changed from "Runeclan" to "RunePixels"
+- **Created `flip-chart.html`** — Flip Chart page was missing despite being linked in every page's nav. Stub page created with ipage article layout, "coming soon" message, and link to community Flipping Guide
+- **Wired Flip Chart nav links** — updated `href="#"` to `href="flip-chart.html"` in nav and aside across all 8 existing pages
+- Updated `PRD.md`, `TRD.md`, `ReadMe.md` to reflect RunePixels and Flip Chart stub completion
+
+---
+
 ## v1.0 — 2026-06-07
 
 ### Major Release — Full ipage Migration to Static HTML

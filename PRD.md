@@ -120,11 +120,11 @@ Each stub displays a "coming soon" message with a back link to Guides. Content t
 
 ---
 
-### 3.6 Flip Chart
+### 3.6 Flip Chart (`flip-chart.html`)
 
-**Priority:** P2 — **Status: Not started**
+**Priority:** P2 — **Status: Stub**
 
-Grand Exchange item flipping tracker. Nav link exists but page not yet created.
+Grand Exchange item flipping tracker. Page created with stub content linking to the community Flipping Guide.
 
 ---
 
@@ -149,9 +149,9 @@ Grand Exchange item flipping tracker. Nav link exists but page not yet created.
 | About | `about.html` | Internal |
 | Discord | `discord.html` | Internal |
 | Guides | `guides.html` | Internal (with sub-menu) |
-| Flip Chart | — | Internal (stub) |
+| Flip Chart | `flip-chart.html` | Internal |
 | Official Clan Page | RS clan page URL | External |
-| Runeclan | runeclan.com/clan/B5TA | External |
+| RunePixels | runepixels.com/clans/b5ta/about | External |
 | Merchandise | zazzle.com/clanb5ta | External |
 
 ### Mobile Navigation
