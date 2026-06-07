@@ -2,6 +2,26 @@
 
 ---
 
+## v1.7 — 2026-06-07
+
+### Header Spacing Fix
+
+Added `margin-top: 113px` to `.container-fluid` in `css/site.css` to restore the visual gap between the fixed header and the page content. The previous gap was provided by the `.meta` search bar (removed in v1.5); without it, content was rendering directly under the header. Value matches the original position: 100px header height + ~13px meta bar height.
+
+Removed the now-unused `.meta` left/right margin rule from the desktop 1200px+ media query.
+
+---
+
+## v1.6 — 2026-06-07
+
+### External Links — Support Link Added
+
+- **Added Support link** to the right aside External Links widget on all 9 pages — positioned above Merchandise, links to `https://azqato.github.io/support.html`
+
+Updated `TRD.md` External Links widget list to include Support.
+
+---
+
 ## v1.5 — 2026-06-07
 
 ### Navigation Updates

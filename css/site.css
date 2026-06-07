@@ -255,7 +255,7 @@ a:hover { color: #1a5fa0; text-decoration: underline; }
 
 .container-fluid {
   padding: 0;
-  margin: 0;
+  margin-top: 113px;
 }
 
 /* The page content wrapper — matches ipage .pageContainer */
@@ -456,8 +456,7 @@ footer.site-footer p { margin: 0; }
   .navMenuButton { display: none; }
   .asideMenuButton { display: none; }
 
-  /* Meta and content get left/right margins for the sidebars */
-  .meta { margin-left: 215px; margin-right: 300px; }
+  /* Content gets left/right margins for the sidebars */
   .container-fluid { margin-left: 215px; margin-right: 300px; }
 
   /* Aside: always visible, no transition */

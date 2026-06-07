@@ -95,9 +95,8 @@ Every page follows this pattern:
   <!-- Mobile overlay -->
   <div class="site-overlay" id="siteOverlay"></div>
 
-  <!-- Main content wrapper -->
+  <!-- Main content wrapper (margin-top: 113px clears the fixed header) -->
   <div class="container-fluid">
-    <div class="meta clearfix"><!-- search bar --></div>
 
     <!-- Page content -->
     <div class="pageContainer">
@@ -137,6 +136,8 @@ Per-page active items are hardcoded with `current-menu-item current_page_item` (
 Nav (left sidebar) items: Home, About, Discord, Guides ▸ (Bossing / Money Making / Quests / Skilling), Official Clan Page, RunePixels, Support, Merchandise
 
 Aside (right sidebar) Pages widget: Home, About, Discord, Guides
+
+Aside (right sidebar) External Links widget: Official Clan Page, RunePixels, Support, Merchandise
 
 ---
 
@@ -245,7 +246,7 @@ All steps from the original plan are complete:
 | Discord invite URL | Resolved | `https://discord.gg/0qfZioFZLSnmWMs7` — confirmed permanent |
 | Guide sub-pages are stubs | Medium | Fill in content as clan members contribute |
 | Flip Chart page | Resolved | `flip-chart.html` stub created with link to community Flipping Guide |
-| Search bar is decorative | Low | Static site can't process search queries |
+| Search bar removed | Resolved | Non-functional search bar removed in v1.5; header spacing restored in v1.7 |
 | Duplicate maintenance across HTML files | Low | Any nav change requires updating all 8 files |
 
 ---
