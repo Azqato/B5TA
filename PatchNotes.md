@@ -2,6 +2,23 @@
 
 ---
 
+## v1.2 — 2026-06-07
+
+### Guide Pages — Content Complete
+
+Rewrote all four guide category stub pages with real content sourced from the original `b5ta.com` ipage archive and homepage.
+
+| Page | Content Added |
+|---|---|
+| `guides-bossing.html` | Bossing intro, conduct rules, Dark Beasts Guide link, New Member Guide link |
+| `guides-money-making.html` | GP/day intro, GE flipping section, Flip Chart link, Flipping Guide, Free Runecoins Guide |
+| `guides-quests.html` | Quest tips, How To Not Be A N00B guide, New Member Guide link |
+| `guides-skilling.html` | Skilling intro, Clan Citadel capping section, leveling tips, New Member Guide |
+
+All pages include structured headings, "What We Offer" lists, community guide links, and a back-link to the Guides index.
+
+---
+
 ## v1.1 — 2026-06-07
 
 ### Link Updates and Missing Pages
