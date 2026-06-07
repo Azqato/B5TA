@@ -50,7 +50,7 @@ B5TA/
 │   ├── bootstrap.js
 │   └── externalscript.js
 │
-├── Logos/                       ← Logo/image assets (0jK9PZV.png, clan.png, favicon.png, wfbCHon.gif, etc.)
+├── img/                       ← Logo/image assets (0jK9PZV.png, clan.png, favicon.png, wfbCHon.gif, etc.)
 ├── fonts/                       ← Bootstrap Glyphicons
 │
 ├── .nojekyll                    ← Disables GitHub Pages Jekyll processing
@@ -211,7 +211,7 @@ An empty `.nojekyll` file at the repo root disables GitHub Pages' Jekyll process
 
 ### Relative Paths
 
-All asset references use relative paths (e.g., `css/site.css`, `Logos/0jK9PZV.png`) so the site works both locally and when served from `azqato.github.io/B5TA/`.
+All asset references use relative paths (e.g., `css/site.css`, `img/0jK9PZV.png`) so the site works both locally and when served from `azqato.github.io/B5TA/`.
 
 ---
 

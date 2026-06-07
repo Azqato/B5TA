@@ -86,7 +86,7 @@ B5TA/
 │   ├── bootstrap.js
 │   └── externalscript.js
 │
-├── Logos/
+├── img/
 │   ├── 0jK9PZV.png             ← header banner logo
 │   ├── clan.png                ← homepage float-right image
 │   ├── favicon.png             ← browser tab icon

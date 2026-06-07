@@ -62,7 +62,7 @@ Mobile (`< 1200px`): both sidebars slide in from their respective edges via `.is
   <div class="header-content">
     <div id="logo">
       <a href="index.html" id="site-logo" title="Clan B5TA" rel="home">
-        <img class="logo-img" src="Logos/0jK9PZV.png" alt="Clan B5TA">
+        <img class="logo-img" src="img/0jK9PZV.png" alt="Clan B5TA">
       </a>
       <span class="blog-description">Founded September 30th, 2014</span>
     </div>
@@ -78,7 +78,7 @@ Mobile (`< 1200px`): both sidebars slide in from their respective edges via `.is
 | Height | `100px` |
 | Background | `#ffffff` |
 | Border | `1px solid #e5e5e5` (bottom) |
-| Logo image | `Logos/0jK9PZV.png` — wide horizontal banner, `max-height: 60px` |
+| Logo image | `img/0jK9PZV.png` — wide horizontal banner, `max-height: 60px` |
 | Tagline | `font-size: 0.78em`, `color: #aaa`, centered below logo |
 
 ---
@@ -275,15 +275,15 @@ No custom web fonts beyond Bootstrap's Glyphicons (in `fonts/`).
 
 | File | Use |
 |---|---|
-| `Logos/0jK9PZV.png` | Header banner logo (primary) |
-| `Logos/clan.png` | Homepage float-right image (280×126) |
-| `Logos/favicon.png` | Browser tab favicon |
-| `Logos/tnOKdrI.png` | High-res favicon / Apple touch icon |
-| `Logos/NTjJFV8.png` | Alternate wide banner logo |
-| `Logos/B5TA wolf vector.png` | Clan wolf logo vector |
+| `img/0jK9PZV.png` | Header banner logo (primary) |
+| `img/clan.png` | Homepage float-right image (280×126) |
+| `img/favicon.png` | Browser tab favicon |
+| `img/tnOKdrI.png` | High-res favicon / Apple touch icon |
+| `img/NTjJFV8.png` | Alternate wide banner logo |
+| `img/B5TA wolf vector.png` | Clan wolf logo vector |
 
 ### Media Assets
 
 | File | Location | Use |
 |---|---|---|
-| `wfbCHon.gif` | `Logos/` | Discord page animated banner |
+| `wfbCHon.gif` | `img/` | Discord page animated banner |

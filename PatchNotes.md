@@ -2,6 +2,23 @@
 
 ---
 
+## v1.4 — 2026-06-07
+
+### Image Consolidation — All Assets into `img/`
+
+Restored all previously deleted image assets and consolidated every image directory (`Logos/`, `Design/`, `Gameplay/`, `images/`) into a single `img/` folder.
+
+- **Restored** `Design/` assets (17 files: header/footer/sidebar images, sprites, banners, branding)
+- **Restored** `Gameplay/` assets (7 files: in-game screenshots and clips)
+- **Moved** all `Logos/` files into `img/` (14 files including logos, favicon, wfbCHon.gif)
+- **Moved** all `images/` files into `img/` (b5talogo.png, discord.jpg)
+- **Deduplicated:** `Design/anim_banner_1_black.gif` skipped (identical to `Logos/` copy)
+- `img/` now contains 40 files — all project image assets in one place
+
+Updated all HTML page references from `Logos/` to `img/`. Updated `ReadMe.md`, `TRD.md`, `Design.md`, `PatchNotes.md`.
+
+---
+
 ## v1.3 — 2026-06-07
 
 ### Repository Cleanup — ipage Merge and Asset Consolidation
@@ -11,7 +28,7 @@ Merged the `ipage/` directory into the main repository and removed all duplicate
 **ipage/ directory removed:**
 - Deleted 4 WordPress archive HTML pages (content fully migrated to main site)
 - Deleted 4 `*_files/` directories (~30 files each: WordPress theme CSS, Jetpack JS, portal pages, duplicate images)
-- Moved `wfbCHon.gif` → `Logos/wfbCHon.gif` (only unique asset referenced by main site)
+- Moved `wfbCHon.gif` → `img/wfbCHon.gif` (only unique asset referenced by main site)
 - Moved `MVP.docx` and `Screenshot.JPG` to repository root
 
 **Stale CSS removed** (unreferenced by any page):
@@ -23,10 +40,10 @@ Merged the `ipage/` directory into the main repository and removed all duplicate
 - `js/bootstrap.min.js`, `js/jquery.js`, `js/npm.js`, `js/destroyvid.js`
 
 **Empty directories removed:**
-- `images/`, `Gameplay/`, `Design/`, `includes/`
+- `img/`, `img/`, `img/`, `includes/`
 
 **`discord.html` updated:**
-- `ipage/discord_files/wfbCHon.gif` → `Logos/wfbCHon.gif`
+- `ipage/discord_files/wfbCHon.gif` → `img/wfbCHon.gif`
 
 **Documentation updated:** `ReadMe.md`, `TRD.md`, `Design.md`, `PRD.md`
 
@@ -204,4 +221,4 @@ All pages rewritten to use the ipage article layout (`pageContainer` / `entry en
 - Added Bootstrap JS plugins
 - Added `dropdown.js`, `externalscript.js`, `destroyvid.js`
 - Added Glyphicons web fonts
-- Added `images/b5talogo.png` and `images/discord.jpg`
+- Added `img/b5talogo.png` and `img/discord.jpg`
