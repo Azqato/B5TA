@@ -134,6 +134,10 @@ Per-page active items are hardcoded with `current-menu-item current_page_item` (
 | `discord.html` | Discord | Discord |
 | `guides.html` + all guide sub-pages | Guides | Guides |
 
+Nav (left sidebar) items: Home, About, Discord, Guides ▸ (Bossing / Money Making / Quests / Skilling), Official Clan Page, RunePixels, Support, Merchandise
+
+Aside (right sidebar) Pages widget: Home, About, Discord, Guides
+
 ---
 
 ## 5. CSS Architecture

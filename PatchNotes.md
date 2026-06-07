@@ -2,6 +2,16 @@
 
 ---
 
+## v1.5 — 2026-06-07
+
+### Navigation Updates
+
+- **Added Support link** to left nav on all pages — positioned above Merchandise, links to `https://azqato.github.io/support.html`
+- **Removed Flip Chart** from left nav and right aside Pages widget on all pages (page `flip-chart.html` itself is preserved)
+- **Removed search bar** from all pages (`.meta.clearfix` block) — search was non-functional
+
+---
+
 ## v1.4 — 2026-06-07
 
 ### Image Consolidation — All Assets into `img/`
