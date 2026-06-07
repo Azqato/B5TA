@@ -286,6 +286,8 @@ a:hover { color: #1a5fa0; text-decoration: underline; }
   max-width: 974px;
 }
 
+.entryContent > *:first-child { margin-top: 0; }
+
 .entryContent h2 {
   padding-bottom: 6px;
   border-bottom: 1px solid #e5e5e5;

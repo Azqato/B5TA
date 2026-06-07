@@ -2,6 +2,14 @@
 
 ---
 
+## v1.8 — 2026-06-07
+
+### Content Top Spacing Fix
+
+Added `.entryContent > *:first-child { margin-top: 0; }` to `css/site.css`. Pages whose `entryContent` begins directly with a heading (e.g. `h2` on the home page) had an extra `1.5em` top margin stacking on the `20px` padding, creating a larger gap than pages using the `entryHeader` title block. This rule zeroes the top margin of the first element in any `entryContent`, making all pages consistent.
+
+---
+
 ## v1.7 — 2026-06-07
 
 ### Header Spacing Fix
