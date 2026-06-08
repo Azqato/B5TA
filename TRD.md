@@ -133,7 +133,7 @@ Per-page active items are hardcoded with `current-menu-item current_page_item` (
 | `discord.html` | Discord | Discord |
 | `guides.html` + all guide sub-pages | Guides | Guides |
 
-Nav (left sidebar) items: Home, About, Discord, Guides ▸ (Bossing / Money Making / Quests / Skilling), Official Clan Page, RunePixels, Support, Merchandise
+Nav (left sidebar) items: Home, About, Discord, Guides ▸ (Bossing / Money Making / Quests / Skilling), — divider —, Official Clan Page, RunePixels, Support, Merchandise
 
 Aside (right sidebar) Pages widget: Home, About, Discord, Guides
 
@@ -244,7 +244,7 @@ All steps from the original plan are complete:
 | Item | Priority | Notes |
 |---|---|---|
 | Discord invite URL | Resolved | `https://discord.gg/0qfZioFZLSnmWMs7` — confirmed permanent |
-| Guide sub-pages are stubs | Medium | Fill in content as clan members contribute |
+| Guide sub-pages | Resolved | All four guide category pages have real content as of v1.2 |
 | Flip Chart page | Resolved | `flip-chart.html` stub created with link to community Flipping Guide |
 | Search bar removed | Resolved | Non-functional search bar removed in v1.5; header spacing restored in v1.7 |
 | Duplicate maintenance across HTML files | Low | Any nav change requires updating all 8 files |

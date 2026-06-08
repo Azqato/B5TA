@@ -2,6 +2,17 @@
 
 ---
 
+## v1.9 — 2026-06-07
+
+### Documentation Overhaul
+
+- **Rewrote `ReadMe.md`** — Replaced the brief migration summary with a comprehensive GitHub reference document. Now covers: About Clan B5TA (full clan description), website purpose and audience table, all pages with descriptions, layout diagram, tech stack, full repository structure, local development instructions, deployment details, documentation index, and future work backlog.
+- **Updated `Design.md`** — Removed the `.meta` search bar row from the layout diagram (removed in v1.5); updated the left nav markup example to include all current nav items (sub-menu, divider, Support, Merchandise).
+- **Updated `PRD.md`** — Guide category pages status changed from Stub → Complete (filled in v1.2); Flip Chart status updated to reflect removal from nav in v1.5; Primary Navigation table updated with current items (Support added, Flip Chart removed, divider noted).
+- **Updated `TRD.md`** — Guide sub-pages known issue marked Resolved; nav items list updated to reflect current state.
+
+---
+
 ## v1.8 — 2026-06-07
 
 ### Content Top Spacing Fix

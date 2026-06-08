@@ -107,24 +107,24 @@ Rebuild the site using the original `b5ta.com` design (archived in `ipage/`) as 
 
 ### 3.5 Guide Category Pages
 
-**Priority:** P1 — **Status: Stub (content TBD)**
+**Priority:** P1 — **Status: Complete**
 
 | Page | File | Status |
 |---|---|---|
-| Bossing | `guides-bossing.html` | Stub |
-| Money Making | `guides-money-making.html` | Stub |
-| Quests | `guides-quests.html` | Stub |
-| Skilling | `guides-skilling.html` | Stub |
+| Bossing | `guides-bossing.html` | ✅ Live |
+| Money Making | `guides-money-making.html` | ✅ Live |
+| Quests | `guides-quests.html` | ✅ Live |
+| Skilling | `guides-skilling.html` | ✅ Live |
 
-Each stub displays a "coming soon" message with a back link to Guides. Content to be filled in by clan members.
+Each page includes structured headings, a "What We Offer" list, community guide links (Google Docs), and a back-link to the Guides index. Content sourced from the original `b5ta.com` ipage archive and homepage.
 
 ---
 
 ### 3.6 Flip Chart (`flip-chart.html`)
 
-**Priority:** P2 — **Status: Stub**
+**Priority:** P2 — **Status: Live (stub)**
 
-Grand Exchange item flipping tracker. Page created with stub content linking to the community Flipping Guide.
+Grand Exchange item flipping tracker. Page is live with an article layout linking to the community Flipping Guide. Full tracker functionality is out of scope for v1.x (static site). Note: removed from the left nav and right aside Pages widget in v1.5; the page itself is preserved.
 
 ---
 
@@ -148,10 +148,11 @@ Grand Exchange item flipping tracker. Page created with stub content linking to 
 | Home | `index.html` | Internal |
 | About | `about.html` | Internal |
 | Discord | `discord.html` | Internal |
-| Guides | `guides.html` | Internal (with sub-menu) |
-| Flip Chart | `flip-chart.html` | Internal |
+| Guides | `guides.html` | Internal (with sub-menu: Bossing, Money Making, Quests, Skilling) |
+| — divider — | | |
 | Official Clan Page | RS clan page URL | External |
 | RunePixels | runepixels.com/clans/b5ta/about | External |
+| Support | azqato.github.io/support.html | External |
 | Merchandise | zazzle.com/clanb5ta | External |
 
 ### Mobile Navigation

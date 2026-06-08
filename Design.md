@@ -20,9 +20,6 @@ The ipage design takes priority. It is a clean, content-first layout inspired by
 ┌─────────────────────────────────────────────────────┐
 │  HEADER (.headerMain)  — fixed 100px                 │
 │  [logo image]  Founded September 30th, 2014          │
-├─────────────────────────────────────────────────────┤
-│  META BAR (.meta.clearfix)                           │
-│  [Search form]                                       │
 ├──────────────┬──────────────────────┬────────────────┤
 │ LEFT NAV     │  PAGE CONTENT        │  RIGHT ASIDE   │
 │ 215px fixed  │  (.pageContainer)    │  300px fixed   │
@@ -34,7 +31,11 @@ The ipage design takes priority. It is a clean, content-first layout inspired by
 │ About        │                      │                │
 │ Discord      │                      │                │
 │ Guides ▸     │                      │                │
-│ Flip Chart   │                      │                │
+│ — divider —  │                      │                │
+│ Clan Page    │                      │                │
+│ RunePixels   │                      │                │
+│ Support      │                      │                │
+│ Merchandise  │                      │                │
 ├──────────────┴──────────────────────┴────────────────┤
 │  FOOTER (.site-footer)                               │
 │  © Clan B5TA | Founded September 30th, 2014          │
@@ -102,13 +103,23 @@ Mobile (`< 1200px`): both sidebars slide in from their respective edges via `.is
           <a href="guides.html">Guides</a>
           <ul class="sub-menu">
             <li class="menu-item"><a href="guides-bossing.html">Bossing</a></li>
-            ...
+            <li class="menu-item"><a href="guides-money-making.html">Money Making</a></li>
+            <li class="menu-item"><a href="guides-quests.html">Quests</a></li>
+            <li class="menu-item"><a href="guides-skilling.html">Skilling</a></li>
           </ul>
         </li>
-        ...
         <div class="menu-section-divider"></div>
         <li class="menu-item">
           <a href="[RS clan URL]" target="_blank" rel="noopener">Official Clan Page</a>
+        </li>
+        <li class="menu-item">
+          <a href="https://runepixels.com/clans/b5ta/about" target="_blank" rel="noopener">RunePixels</a>
+        </li>
+        <li class="menu-item">
+          <a href="https://azqato.github.io/support.html" target="_blank" rel="noopener">Support</a>
+        </li>
+        <li class="menu-item">
+          <a href="http://www.zazzle.com/clanb5ta/products" target="_blank" rel="noopener">Merchandise</a>
         </li>
       </ul>
     </nav>
