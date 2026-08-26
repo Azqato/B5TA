@@ -1,6 +1,6 @@
 /*
  * B5TA Site CSS
- * Layout extracted from ipage/WikiWP design — reimplemented without WordPress
+ * Layout extracted from ipage/WikiWP design, reimplemented without WordPress
  * Loads after bootstrap.css; overrides and extends Bootstrap where needed.
  */
 
@@ -100,7 +100,7 @@ a:hover { color: #1a5fa0; text-decoration: underline; }
 
 
 /* ============================================================
-   MOBILE HAMBURGER — LEFT NAV
+   MOBILE HAMBURGER - LEFT NAV
    ============================================================ */
 
 .navMenuButton {
@@ -128,7 +128,7 @@ a:hover { color: #1a5fa0; text-decoration: underline; }
 
 
 /* ============================================================
-   MOBILE HAMBURGER — RIGHT ASIDE
+   MOBILE HAMBURGER - RIGHT ASIDE
    ============================================================ */
 
 .asideMenuButton {
@@ -258,7 +258,7 @@ a:hover { color: #1a5fa0; text-decoration: underline; }
   margin-top: 113px;
 }
 
-/* The page content wrapper — matches ipage .pageContainer */
+/* The page content wrapper, matches ipage .pageContainer */
 .pageContainer {
   border: 1px solid #e5e5e5;
   border-top: none;
@@ -398,7 +398,7 @@ footer.site-footer p { margin: 0; }
 
 
 /* ============================================================
-   OVERLAY — dims page when sidebar is open on mobile
+   OVERLAY - dims page when sidebar is open on mobile
    ============================================================ */
 
 .site-overlay {

@@ -1,101 +1,63 @@
 # B5TA Clan Website
 
-Static clan website for Clan B5TA, served via GitHub Pages.
+The official website for Clan B5TA, a RuneScape gaming community founded on
+September 30th, 2014 by zoop. The site is the clan's public home: it explains who
+the clan is, how to join, and collects the guides members have written.
 
-**Live:** https://www.b5ta.com · https://azqato.github.io/B5TA/
+## Live site
 
----
+The site is hosted on GitHub Pages at **https://azqato.github.io/B5TA/**.
 
-## Tech Stack
+The clan's primary domain, **b5ta.com**, does not serve this site yet. Pointing it
+here is planned but not yet scheduled, so the GitHub Pages address above is the one
+to use and to share. See [docs/PRD.md](docs/PRD.md) for the cutover plan.
 
-| Layer | Technology | Version |
-|---|---|---|
-| Markup | HTML5 | — |
-| CSS Framework | Bootstrap | 3.3.6 |
-| JavaScript Library | jQuery | 1.12.3 |
-| Custom CSS | css/site.css | — |
-| Custom JS | js/site.js | — |
-| Hosting | GitHub Pages | — |
+## What the site offers
 
-No build system, package manager, or Node.js required.
+**Home** introduces the clan and lists what B5TA plays: RuneScape (bossing,
+money making, efficient levelling), League of Legends, Summoners War, and
+Minecraft. It is the fastest route to the Discord link.
 
----
+**About** covers the clan's history, its rules, how promotion works, and the
+conduct policy. A prospective member can read this and know whether the clan
+is a fit before speaking to anyone.
 
-## Prerequisites
+**Discord** gives the two steps to join: download Discord, then use the clan's
+permanent invite link. There is no application form and no waiting list.
 
-- Git
-- A modern browser (Chrome, Firefox, Edge, Safari)
-- Python 3 or Node.js — optional, only needed for a local HTTP server
+**Guides** is an index of clan knowledge, split into four RuneScape categories
+(Bossing, Money Making, Quests, Skilling) alongside links to longer
+community-written guides hosted elsewhere.
 
-No Node version requirement. No `.env` file. No package manager.
+**Flip Chart** is a placeholder for a planned Grand Exchange flipping tracker.
+It currently points readers at the community Flipping Guide instead. It is
+reachable from the Money Making guide but is not listed in the site navigation.
 
----
+Every page also carries a sidebar of external links: the official RuneScape clan
+page, the clan's RunePixels stats page, a support page, and the clan's merchandise
+store.
 
-## Installation
+## Who it is for
 
-```bash
-git clone https://github.com/Azqato/B5TA.git
-cd B5TA
-```
+Current B5TA members who want fast access to the Discord link and the guides,
+prospective members deciding whether to join, returning members checking that the
+clan is still active, and RuneScape players who found the guides through search
+and may never join at all.
 
-No `npm install` or build step.
+## Status
 
----
+Live. The site is deployed and all pages are complete. Development is
+maintenance-only: content is updated when clan members contribute it, and there is
+no active feature work in progress.
 
-## Running Locally
+## Where to learn more
 
-Open any `.html` file directly in a browser. For correct relative paths across all pages, serve from an HTTP server:
+Everything technical lives in [`/docs`](docs/).
 
-```bash
-# Python (recommended)
-python -m http.server 8000
-# Open http://localhost:8000
-
-# Node.js (no install required)
-npx serve .
-# Open http://localhost:3000
-```
-
----
-
-## Environment Variables
-
-None. This is a fully static site with no server, no secrets, and no `.env` file.
-
----
-
-## Build
-
-No build step. Source files are the production files.
-
----
-
-## Deploy
-
-The site deploys automatically on push to `master`.
-
-1. Commit and push changes to `master` at `github.com/Azqato/B5TA`
-2. GitHub Pages serves the updated site within ~30 seconds
-
-**Custom domain:** `b5ta.com` points to GitHub Pages via a CNAME DNS record.  
-**GitHub Pages URL:** `azqato.github.io/B5TA/`  
-**Jekyll:** Disabled via `.nojekyll` at the repo root (required for Bootstrap's `fonts/` directory to be served correctly).
-
----
-
-## Documentation
-
-Full documentation is in [`/docs`](docs/):
-
-| Document | Description |
+| Document | What it covers |
 |---|---|
-| [PRD.md](docs/PRD.md) | Product requirements, user stories, goals, and constraints |
-| [TRD.md](docs/TRD.md) | Technical architecture, data flow, third-party integrations, known debt |
-| [DESIGN.md](docs/DESIGN.md) | Color palette, typography, spacing, breakpoints, component patterns |
-| [PATCHNOTES.md](docs/PATCHNOTES.md) | Full version history |
-| [PRFAQ.md](docs/PRFAQ.md) | Press release and internal/external FAQ |
-| [TENETS.md](docs/TENETS.md) | Product and design principles |
-| [METRICS.md](docs/METRICS.md) | Success metrics and measurement plan |
-| [ROADMAP.md](docs/ROADMAP.md) | Milestone plan and deferred features |
-| [SECURITY.md](docs/SECURITY.md) | Security posture, data handling, and dependency policy |
-| [RUNBOOK.md](docs/RUNBOOK.md) | Local setup, deploy, rollback, and troubleshooting |
+| [PRD.md](docs/PRD.md) | Product intent, architecture, setup, deploy, security, conventions, roadmap, and the full audit record |
+| [DESIGN.md](docs/DESIGN.md) | Colour palette, typography, spacing, breakpoints, component patterns, accessibility, motion |
+| [PATCHNOTES.md](docs/PATCHNOTES.md) | Every version, dated, with what changed and why |
+
+Licensed under the MIT License. See [LICENSE](LICENSE).
